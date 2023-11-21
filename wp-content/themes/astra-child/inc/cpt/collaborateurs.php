@@ -1,5 +1,5 @@
 <?php
-/* Register Calendrier Custom Post Type */
+/* Register Collaborateur Custom Post Type */
 add_action('init', 'collaborateur_post_type', 0);
 function collaborateur_post_type()
 {

@@ -1,5 +1,5 @@
 <?php
-/* Register Spectacles Custom Post Type */
+/* Register Lieux Custom Post Type */
 add_action('init', 'spectacles_lieux_post_type', 0);
 function spectacles_lieux_post_type()
 {
