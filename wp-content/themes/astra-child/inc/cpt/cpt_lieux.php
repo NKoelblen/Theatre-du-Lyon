@@ -1,7 +1,7 @@
 <?php
 /* Register Lieux Custom Post Type */
-add_action('init', 'spectacles_lieux_post_type', 0);
-function spectacles_lieux_post_type()
+add_action('init', 'lieux_post_type', 0);
+function lieux_post_type()
 {
     $labels = array(
         'name'                  => _x('Lieux', 'Post Type General Name', 'text_domain'),

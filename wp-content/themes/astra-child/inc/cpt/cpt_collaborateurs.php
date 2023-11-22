@@ -1,7 +1,7 @@
 <?php
 /* Register Collaborateur Custom Post Type */
-add_action('init', 'collaborateur_post_type', 0);
-function collaborateur_post_type()
+add_action('init', 'collaborateurs_post_type', 0);
+function collaborateurs_post_type()
 {
     $labels = array(
         'name'                  => _x('Collaborateurs', 'Post Type General Name', 'text_domain'),
@@ -36,7 +36,7 @@ function collaborateur_post_type()
         'label'                 => __('Collaborateur', 'text_domain'),
         'description'           => __('Collaborateurs', 'text_domain'),
         'labels'                => $labels,
-        'supports'              => array('title', 'thumbnail'),
+        'supports'              => array('title', 'thumbnail', 'editor', 'excerpt'),
         'taxonomies'            => array(),
         'hierarchical'          => false,
         'public'                => true,

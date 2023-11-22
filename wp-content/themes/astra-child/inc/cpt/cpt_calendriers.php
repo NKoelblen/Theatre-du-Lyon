@@ -1,7 +1,7 @@
 <?php
 /* Register Calendrier Custom Post Type */
-add_action('init', 'spectacles_calendrier_post_type', 0);
-function spectacles_calendrier_post_type()
+add_action('init', 'calendriers_post_type', 0);
+function calendriers_post_type()
 {
     $labels = array(
         'name'                  => _x('Calendriers', 'Post Type General Name', 'text_domain'),

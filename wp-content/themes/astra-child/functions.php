@@ -34,7 +34,26 @@ define('ASTRA_CHILD_DIR', trailingslashit(get_theme_file_path()));
 /**
  * Include Custom Post Types
  */
-require_once ASTRA_CHILD_DIR . 'inc/cpt/spectacles.php';
-require_once ASTRA_CHILD_DIR . 'inc/cpt/spectacles-lieux.php';
-require_once ASTRA_CHILD_DIR . 'inc/cpt/spectacles-calendrier.php';
-require_once ASTRA_CHILD_DIR . 'inc/cpt/collaborateurs.php';
+require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_spectacles.php';
+require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_lieux.php';
+require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_calendriers.php';
+require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_collaborateurs.php';
+
+/**
+ * Include Meta Boxes
+ */
+require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_lieu.php';
+
+/**
+ * Remove native custom fields metabox
+ */
+function remove_custom_meta_form()
+{
+	remove_meta_box('postcustom', 'post', 'normal');
+	remove_meta_box('postcustom', 'page', 'normal');
+	remove_meta_box('postcustom', 'spectacle', 'normal');
+	remove_meta_box('postcustom', 'lieu', 'normal');
+	remove_meta_box('postcustom', 'calendrier', 'normal');
+	remove_meta_box('postcustom', 'collaborateur', 'normal');
+}
+add_action('admin_menu', 'remove_custom_meta_form');
