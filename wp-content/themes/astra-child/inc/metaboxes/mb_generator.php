@@ -23,8 +23,7 @@ class MetaboxGenerator
         add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
         add_action('admin_footer', [$this, 'repeatable_field_footer']);
         add_action('save_post', [$this, 'save_fields']);
-        add_action('admin_head', [$this, 'repeatable_field_header']);
-        add_action('admin_footer', [$this, 'add_media_fields']);
+        // add_action('admin_head', [$this, 'repeatable_field_header']);
     }
 
     public function add_meta_boxes()
@@ -144,69 +143,70 @@ class MetaboxGenerator
                                         </tr>
                                     </tfoot>
                                 </table>
-                            <?php
-                            }
-
-                            // Textarea
-                            else
-                if ($group_field['type'] == "textarea") {
-                            ?>
-                                <textarea id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
-                        <?php echo $meta_value ?>
-                    </textarea>
                                 <?php
                             }
 
-                            // Select
-                            else if ($group_field['type'] == "select") {
-                                if ($meta_value) {
-                                    $selected  = isset($meta_value) ? $meta_value : '';
-                                    $selected_key = array_search($selected, array_column($group_field['options'], 'id'));                              ?>
-                                    <select id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
-                                        <option value="<?php echo $selected ?>">
-                                            <?php echo $group_field['options'][$selected_key]['title']; ?>
-                                        </option>
-                                        <option value=""></option>
-                                        <?php
-                                        unset($group_field['options'][$selected_key]);
-                                        foreach ($group_field['options'] as $option) {
-                                        ?>
-                                            <option value="<?php echo $option['id'] ?>">
-                                                <?php echo $option['title'] ?>
-                                            </option>
-                                        <?php
-                                        }
-                                    } else {
-                                        ?>
+                            // Textarea
+                            else {
+                                if ($group_field['type'] == "textarea") {
+                                ?>
+                                    <textarea id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
+                        <?php echo $meta_value ?>
+                    </textarea>
+                                    <?php
+                                }
+
+                                // Select
+                                else if ($group_field['type'] == "select") {
+                                    if ($meta_value) {
+                                        $selected  = isset($meta_value) ? $meta_value : '';
+                                        $selected_key = array_search($selected, array_column($group_field['options'], 'id'));                              ?>
                                         <select id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
+                                            <option value="<?php echo $selected ?>">
+                                                <?php echo $group_field['options'][$selected_key]['title']; ?>
+                                            </option>
                                             <option value=""></option>
                                             <?php
+                                            unset($group_field['options'][$selected_key]);
                                             foreach ($group_field['options'] as $option) {
                                             ?>
                                                 <option value="<?php echo $option['id'] ?>">
                                                     <?php echo $option['title'] ?>
                                                 </option>
-                                        <?php
+                                            <?php
                                             }
-                                        }
-                                        ?>
-                                        </select>
-                                    <?php
-                                }
+                                        } else {
+                                            ?>
+                                            <select id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
+                                                <option value=""></option>
+                                                <?php
+                                                foreach ($group_field['options'] as $option) {
+                                                ?>
+                                                    <option value="<?php echo $option['id'] ?>">
+                                                        <?php echo $option['title'] ?>
+                                                    </option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                            </select>
+                                        <?php
+                                    }
 
-                                // Inputs
-                                else {
-                                    ?>
-                                        <input id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" type="<?php echo $group_field['type'] ?>" value="<?php echo $meta_value ?>" style="width: 100%;">
-                                <?php
+                                    // Inputs
+                                    else {
+                                        ?>
+                                            <input id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" type="<?php echo $group_field['type'] ?>" value="<?php echo $meta_value ?>" style="width: 100%;">
+                                    <?php
+                                    }
                                 }
-                            }
-                                ?>
+                                    ?>
                         </div>
                     </div>
-                <?php
+            <?php
+                }
             }
-                ?>
+            ?>
             </fieldset>
             <hr>
         <?php
@@ -229,20 +229,19 @@ class MetaboxGenerator
                     });
                 });
             </script>
-        <?php
-    }
-
-    /* Repeatable Style */
-    public function repeatable_field_header()
-    {
-        ?>
-            <style type="text/css">
-                .hide-tr {
-                    display: none;
-                }
-            </style>
     <?php
     }
+
+    // /* Repeatable Style */
+    // public function repeatable_field_header()
+    // {
+    //         <style type="text/css">
+    //             .hide-tr {
+    //                 display: none;
+    //             }
+    //         </style>
+    // 
+    // }
 
     /* Save fields */
     public function save_fields($post_id)
