@@ -42,7 +42,10 @@ require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_collaborateurs.php';
 /**
  * Include Meta Boxes
  */
+require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_generator.php';
+require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_spectacle.php';
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_lieu.php';
+require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_calendrier.php';
 
 /**
  * Remove native custom fields metabox
@@ -57,3 +60,12 @@ function remove_custom_meta_form()
 	remove_meta_box('postcustom', 'collaborateur', 'normal');
 }
 add_action('admin_menu', 'remove_custom_meta_form');
+
+/**
+ * Remove autosave
+ */
+add_action('wp_print_scripts', 'no_autosave');
+function no_autosave()
+{
+	wp_deregister_script('autosave');
+}

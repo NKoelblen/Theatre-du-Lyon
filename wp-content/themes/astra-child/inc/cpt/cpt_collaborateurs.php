@@ -36,7 +36,7 @@ function collaborateurs_post_type()
         'label'                 => __('Collaborateur', 'text_domain'),
         'description'           => __('Collaborateurs', 'text_domain'),
         'labels'                => $labels,
-        'supports'              => array('title', 'thumbnail', 'editor', 'excerpt'),
+        'supports'              => array('title', 'thumbnail', 'editor'),
         'taxonomies'            => array(),
         'hierarchical'          => false,
         'public'                => true,
