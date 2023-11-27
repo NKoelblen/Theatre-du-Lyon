@@ -14,13 +14,13 @@ $mb_lieu->set_fields(
                 'label' => 'URL',
                 'id'    => 'website-url',
                 'type'  => 'url',
-                'width' => '50%'
+                'width' => '49.7%'
             ],
             [
                 'label' => 'Texte de remplacement',
                 'id'    => 'website-label',
                 'type'  => 'text',
-                'width' => '50%'
+                'width' => '49.7%'
             ],
         ],
         [
@@ -44,13 +44,13 @@ $mb_lieu->set_fields(
                 'label' => 'Code Postal',
                 'id'    => 'postal-code',
                 'type'  => 'text',
-                'width' => '25%'
+                'width' => '24.7%'
             ],
             [
                 'label' => 'Ville',
                 'id'    => 'city',
                 'type'  => 'text',
-                'width' => '75%'
+                'width' => '74.7%'
             ]
         ],
         [
