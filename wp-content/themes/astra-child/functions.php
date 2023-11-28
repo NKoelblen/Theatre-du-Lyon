@@ -13,6 +13,7 @@
  * Define Constants
  */
 define('CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0');
+define('ASTRA_CHILD_DIR', trailingslashit(get_theme_file_path()));
 
 /**
  * Enqueue styles
@@ -26,12 +27,6 @@ function child_enqueue_styles()
 add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 
 /**
- * Define Constants
- */
-
-define('ASTRA_CHILD_DIR', trailingslashit(get_theme_file_path()));
-
-/**
  * Include Custom Post Types
  */
 require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_spectacles.php';
@@ -40,7 +35,7 @@ require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_calendriers.php';
 require_once ASTRA_CHILD_DIR . 'inc/cpt/cpt_collaborateurs.php';
 
 /**
- * Include Meta Boxes
+ * Include Metaboxes
  */
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_generator.php';
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_spectacle.php';
@@ -60,6 +55,12 @@ function remove_custom_meta_form()
 	remove_meta_box('postcustom', 'collaborateur', 'normal');
 }
 add_action('admin_menu', 'remove_custom_meta_form');
+
+/**
+ * Include Shortcodes
+ */
+require_once ASTRA_CHILD_DIR . 'template-parts/shortcodes/sc_spectacle_calendrier.php';
+require_once ASTRA_CHILD_DIR . 'template-parts/shortcodes/sc_calendriers.php';
 
 /**
  * Remove autosave
