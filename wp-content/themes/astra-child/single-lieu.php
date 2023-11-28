@@ -21,7 +21,6 @@ get_header(); ?>
 
     <?php astra_primary_content_top(); ?>
 
-
     <main id="main" class="site-main">
         <?php
         if (have_posts()) :
