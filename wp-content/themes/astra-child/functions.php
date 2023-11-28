@@ -59,8 +59,8 @@ add_action('admin_menu', 'remove_custom_meta_form');
 /**
  * Include Shortcodes
  */
-require_once ASTRA_CHILD_DIR . 'template-parts/shortcodes/sc_spectacle_calendrier.php';
-require_once ASTRA_CHILD_DIR . 'template-parts/shortcodes/sc_calendriers.php';
+require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_calendrier.php';
+require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_calendriers.php';
 
 /**
  * Remove autosave
