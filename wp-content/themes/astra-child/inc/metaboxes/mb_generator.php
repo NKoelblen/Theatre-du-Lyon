@@ -82,7 +82,7 @@ class MetaboxGenerator
                     $meta_value = get_post_meta($post->ID, $group_field['id'], true);
                     if (empty($meta_value) && isset($group_field['default'])) :
                         $meta_value = $group_field['default'];
-                    endif; // Endif Default 
+                    endif; // Endif Default
                 ?>
 
                     <!-- Label + Field box -->
@@ -99,22 +99,45 @@ class MetaboxGenerator
                                 <table class="item-table">
                                     <tbody>
                                         <?php if ($meta_value) :
-                                            foreach ($meta_value as $item_key => $item_value) :
-                                                $item1  = isset($item_value) ? $item_value : ''; ?>
+                                            $meta_value_type = [];
+                                            foreach ($group_field['repeatable-fields'] as $repeatable_field) :
+                                                $meta_value_type[] = $repeatable_field['type'];
+                                            endforeach;
+                                            $meta_values = [];
+                                            foreach ($meta_value as $item_values) :
+                                                $values = [];
+                                                foreach ($item_values as $item_key => $item_value) :
+                                                    $values[] = ['id' => $item_key, 'value' => $item_value];
+                                                endforeach;
+                                                $values_and_type = [];
+                                                foreach ($values as $key => $value) :
+                                                    $values_and_type[] = $value + ['type' => $meta_value_type[$key]];
+                                                endforeach;
+                                                $meta_values[] = $values_and_type;
+                                            endforeach; ?>
+                                            <?php foreach ($meta_values as $item_key => $item_values) : ?>
                                                 <tr class="sub-row">
-                                                    <td><input type="<?php echo $group_field['type'] ?>" name="<?php echo esc_attr($group_field['id'] . '[' . $item_key . ']'); ?>" value="<?php echo esc_attr($item1); ?>"></td>
+                                                    <?php foreach ($item_values as $item_value) : ?>
+                                                        <td><input type="<?php echo $item_value['type'] ?>" name="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" value="<?php echo $item_value['value'] ?>"></td>
+                                                    <?php endforeach; ?>
                                                     <td><button class="remove-item button" type="button">Supprimer</button></td>
                                                 </tr>
-                                            <?php endforeach; // Endforeach meta_value
-                                        else : ?>
+                                            <?php endforeach; // Endforeach meta_values
+                                            ?>
+
+                                        <?php else : ?>
                                             <tr class="sub-row">
-                                                <td><input type="<?php echo $group_field['type'] ?>" name="<?php echo $group_field['id'] ?>[0]"></td>
+                                                <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
+                                                    <td><input type="<?php echo $repeatable_field['type'] ?>" name="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>"></td>
+                                                <?php endforeach; ?>
                                                 <td><button class="remove-item button" type="button">Supprimer</button></td>
                                             </tr>
-                                        <?php endif; // Endif meta_value 
+                                        <?php endif; // Endif meta_value
                                         ?>
                                         <tr class="hide-tr">
-                                            <td><input name="hide_<?php echo $group_field['id'] ?>[rand_no]" type="<?php echo $group_field['type'] ?>"></td>
+                                            <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
+                                                <td><input type="<?php echo $repeatable_field['type'] ?>" name="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" id="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>"></td>
+                                            <?php endforeach; ?>
                                             <td><button class="remove-item button" type="button">Supprimer</button></td>
                                         </tr>
                                     </tbody>

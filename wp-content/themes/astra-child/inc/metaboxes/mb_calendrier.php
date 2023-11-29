@@ -49,23 +49,39 @@ $mb_calendrier->set_fields(
         [
             'group_label' => '',
             [
-                'label'         => 'Spectacle',
-                'id'            => 'spectacle',
-                'type'          => 'select',
-                'options'       => $spectacles
-            ],
+                'label'             => 'Spectacle',
+                'id'                => 'spectacle',
+                'type'              => 'select',
+                'options'           => $spectacles
+            ], // spectacle
             [
-                'label'         => 'Lieu',
-                'id'            => 'lieu',
-                'type'          => 'select',
-                'options'       => $lieux
-            ],
+                'label'             => 'Lieu',
+                'id'                => 'lieu',
+                'type'              => 'select',
+                'options'           => $lieux
+            ], // lieu
             [
-                'label'         => 'Date et heure',
-                'id'            => 'time',
-                'type'          => 'datetime-local',
-                'repeatable'    => true
-            ]
-        ]
-    ]
+                'label'             => 'Date et heure',
+                'id'                => 'time',
+                'repeatable'        => true,
+                'repeatable-fields' => [
+                    [
+                        'label'     => 'Date',
+                        'id'        => 'date',
+                        'type'      => 'date'
+                    ], // date
+                    [
+                        'label'     => 'Heure',
+                        'id'        => 'heure',
+                        'type'      => 'time'
+                    ], // heure
+                    [
+                        'label'     => 'Public',
+                        'id'        => 'public',
+                        'type'      => 'text'
+                    ], // public    
+                ] // repeatable-fields
+            ] // time
+        ] // group
+    ] // fields
 );

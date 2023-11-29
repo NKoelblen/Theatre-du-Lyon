@@ -60,7 +60,6 @@ add_action('admin_menu', 'remove_custom_meta_form');
  * Include Shortcodes
  */
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_calendrier.php';
-require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_calendriers.php';
 
 /**
  * Remove autosave
@@ -69,4 +68,13 @@ add_action('wp_print_scripts', 'no_autosave');
 function no_autosave()
 {
 	wp_deregister_script('autosave');
+}
+
+
+function full_textual_date_fr($date)
+{
+	$mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
+	$jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+
+	return $jours[date("w", $date)] . " " . date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
 }

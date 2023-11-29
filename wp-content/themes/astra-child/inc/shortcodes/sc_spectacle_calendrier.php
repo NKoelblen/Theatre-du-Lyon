@@ -58,7 +58,7 @@ function calendrier_shortcode()
                 foreach ($c_times as $time) :
 
                     ?>
-                    <pre><?php echo $time; ?></pre>
+                    <pre><?php echo "le " . full_textual_date_fr(strtotime($time['date'])) . " à " . date_format(date_create($time['heure']), 'H\hi') . " - " . $time['public']; ?></pre>
 <?php
 
                 endforeach;

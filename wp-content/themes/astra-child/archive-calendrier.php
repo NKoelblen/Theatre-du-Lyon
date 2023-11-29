@@ -49,91 +49,125 @@ get_header(); ?>
 
 					<div <?php astra_blog_layout_class('blog-layout-1'); ?>>
 						<div class="post-content <?php echo astra_attr('ast-grid-common-col'); ?>">
-							<?php astra_blog_post_thumbnail_and_title_order(); ?>
-							<div class="entry-content clear" <?php
-																echo astra_attr(
-																	'article-entry-content-blog-layout',
-																	array(
-																		'class' => '',
-																	)
-																);
-																?>>
-								<?php
-								astra_entry_content_before();
-								astra_the_excerpt();
 
-								$calendrier_id = get_the_ID();
+							<?php
+							do_action('astra_archive_entry_header_before');
 
-								$c_spectacle_id = get_post_meta($calendrier_id, "spectacle", true);
 
-								$spectacle_posts = new WP_Query(
-									[
-										'p'         => $c_spectacle_id,
-										'post_type' => 'any'
+							$calendrier_id = get_the_ID();
 
-									]
-								);
+							$c_spectacle_id = get_post_meta($calendrier_id, "spectacle", true);
 
-								if ($spectacle_posts->have_posts()) :
-									while ($spectacle_posts->have_posts()) :
-										$spectacle_posts->the_post();
-								?>
-										<pre><?php echo get_the_title(); ?></pre>
-									<?php
+							$spectacle_posts = new WP_Query(
+								[
+									'p'         => $c_spectacle_id,
+									'post_type' => 'any'
 
-									endwhile;
-								endif;
-								wp_reset_postdata();
+								]
+							);
 
-								$c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
+							if ($spectacle_posts->have_posts()) :
+								while ($spectacle_posts->have_posts()) :
+									$spectacle_posts->the_post();
+							?>
 
-								$lieu_posts = new WP_Query(
-									[
-										'p'         => $c_lieu_id,
-										'post_type' => 'any'
-
-									]
-								);
-
-								if ($lieu_posts->have_posts()) :
-									while ($lieu_posts->have_posts()) :
-										$lieu_posts->the_post();
-									?>
-										<pre><?php echo get_the_title(); ?></pre>
-										<pre><a href="<?php echo get_post_meta($c_lieu_id, "website-url", true); ?>" target="_blank"><?php echo get_post_meta($c_lieu_id, "website-label", true); ?></a></pre>
-										<pre><?php echo get_post_meta($c_lieu_id, "adress1", true);; ?></pre>
-										<pre><?php echo get_post_meta($c_lieu_id, "adress2", true);; ?></pre>
-										<pre><?php echo get_post_meta($c_lieu_id, "adress3", true); ?></pre>
-										<pre><?php echo get_post_meta($c_lieu_id, "postal-code", true) . " " . get_post_meta($c_lieu_id, "city", true); ?></pre>
-										<pre><?php echo get_post_meta($c_lieu_id, "informations", true); ?></pre>
-									<?php
-
-									endwhile;
-								endif;
-								wp_reset_postdata();
-
-								$c_times = get_post_meta($calendrier_id, "time", true);
-
-								foreach ($c_times as $time) :
-
-									?>
-									<pre><?php echo $time; ?></pre>
+									<header class="entry-header">
 								<?php
 
-								endforeach;
+									do_action('astra_archive_post_title_before');
 
-								astra_entry_content_after();
+									/* translators: 1: Current post link, 2: Current post id */
+									astra_the_post_title(
+										sprintf(
+											'<h2 class="entry-title" %2$s><a href="%1$s" rel="bookmark">',
+											esc_url(get_permalink()),
+											get_the_title()
+										),
+										'</a></h2>',
+										get_the_id()
+									);
 
-								wp_link_pages(
-									array(
-										'before'      => '<div class="page-links">' . esc_html(astra_default_strings('string-blog-page-links-before', false)),
-										'after'       => '</div>',
-										'link_before' => '<span class="page-link">',
-										'link_after'  => '</span>',
-									)
-								);
+									do_action('astra_archive_post_title_after');
+
+
+
+								endwhile;
+							endif;
+							wp_reset_postdata();
+
+							do_action('astra_archive_post_meta_before');
+
+							astra_blog_get_post_meta();
+
+							do_action('astra_archive_post_meta_after');
+
 								?>
-							</div><!-- .entry-content .clear -->
+									</header><!-- .entry-header -->
+									<?php
+
+									do_action('astra_archive_entry_header_after'); ?>
+
+
+									<div class="entry-content clear" <?php
+																		echo astra_attr(
+																			'article-entry-content-blog-layout',
+																			array(
+																				'class' => '',
+																			)
+																		);
+																		?>>
+										<?php
+										astra_entry_content_before();
+
+										$c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
+
+										$lieu_posts = new WP_Query(
+											[
+												'p'         => $c_lieu_id,
+												'post_type' => 'any'
+
+											]
+										);
+
+										if ($lieu_posts->have_posts()) :
+											while ($lieu_posts->have_posts()) :
+												$lieu_posts->the_post();
+										?>
+												<a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
+												<pre><?php echo get_post_meta($c_lieu_id, "adress1", true);; ?></pre>
+												<pre><?php echo get_post_meta($c_lieu_id, "adress2", true);; ?></pre>
+												<pre><?php echo get_post_meta($c_lieu_id, "adress3", true); ?></pre>
+												<pre><?php echo get_post_meta($c_lieu_id, "postal-code", true) . " " . get_post_meta($c_lieu_id, "city", true); ?></pre>
+												<pre>Informations complémentaires : <?php echo get_post_meta($c_lieu_id, "informations", true); ?></pre>
+												<pre>Site internet : <a href="<?php echo get_post_meta($c_lieu_id, "website-url", true); ?>" target="_blank"><?php echo get_post_meta($c_lieu_id, "website-label", true); ?></a></pre>
+											<?php
+
+											endwhile;
+										endif;
+										wp_reset_postdata();
+
+										$c_times = get_post_meta($calendrier_id, "time", true);
+
+										foreach ($c_times as $time) :
+
+											?>
+											<pre><?php echo "le " . full_textual_date_fr(strtotime($time['date'])) . " à " . date_format(date_create($time['heure']), 'H\hi') . " - " . $time['public']; ?></pre>
+										<?php
+
+										endforeach;
+
+										astra_entry_content_after();
+
+										wp_link_pages(
+											array(
+												'before'      => '<div class="page-links">' . esc_html(astra_default_strings('string-blog-page-links-before', false)),
+												'after'       => '</div>',
+												'link_before' => '<span class="page-link">',
+												'link_after'  => '</span>',
+											)
+										);
+										?>
+									</div><!-- .entry-content .clear -->
 						</div><!-- .post-content -->
 					</div> <!-- .blog-layout-1 -->
 
