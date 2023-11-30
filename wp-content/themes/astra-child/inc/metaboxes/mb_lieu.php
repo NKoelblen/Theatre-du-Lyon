@@ -58,7 +58,7 @@ $mb_lieu->set_fields(
             [
                 'label' => 'Informations complémentaires',
                 'id'    => 'informations',
-                'type'  => 'textarea'
+                'type'  => 'WYSIWYG'
             ]
         ]
     ]

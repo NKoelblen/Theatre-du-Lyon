@@ -61,7 +61,6 @@ $mb_calendrier->set_fields(
                 'options'           => $lieux
             ], // lieu
             [
-                'label'             => 'Date et heure',
                 'id'                => 'time',
                 'repeatable'        => true,
                 'repeatable-fields' => [
