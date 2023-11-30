@@ -108,6 +108,7 @@ class MetaboxGenerator
                                             <?php endforeach; ?>
                                         </tr>
                                         <?php if ($meta_value) :
+                                            array_multisort(array_column($meta_value, 'public'), SORT_ASC, array_column($meta_value, 'date'), SORT_ASC, array_column($meta_value, 'heure'), SORT_ASC, $meta_value);
                                             $meta_value_type = [];
                                             foreach ($group_field['repeatable-fields'] as $repeatable_field) :
                                                 $meta_value_type[] = $repeatable_field['type'];
@@ -123,7 +124,7 @@ class MetaboxGenerator
                                                     $values_and_type[] = $value + ['type' => $meta_value_type[$key]];
                                                 endforeach; // Enforeach value
                                                 $meta_values[] = $values_and_type;
-                                            endforeach; // Endforeach item_values 
+                                            endforeach; // Endforeach item_values
                                         ?>
                                             <?php foreach ($meta_values as $item_key => $item_values) : ?>
                                                 <tr class="sub-row">

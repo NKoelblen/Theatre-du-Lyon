@@ -60,6 +60,7 @@ add_action('admin_menu', 'remove_custom_meta_form');
  * Include Shortcodes
  */
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_calendrier.php';
+require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_calendriers.php';
 
 /**
  * Remove autosave
@@ -70,7 +71,9 @@ function no_autosave()
 	wp_deregister_script('autosave');
 }
 
-
+/**
+ * French date : "Vendredi 1er Décembre 2023"
+ */
 function full_textual_date_fr($date)
 {
 	$mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
