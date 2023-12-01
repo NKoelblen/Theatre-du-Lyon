@@ -99,3 +99,17 @@ function full_textual_date_fr($date)
 
 	return $jours[date("w", $date)] . " " . date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
 }
+
+add_action('admin_init', 'remove_menu_comments');
+function remove_menu_comments()
+{
+	remove_menu_page('edit-comments.php');
+}
+
+add_filter('astra_tablet_breakpoint', function () {
+	return 1920;
+});
+
+add_filter('astra_mobile_breakpoint', function () {
+	return 921;
+});
