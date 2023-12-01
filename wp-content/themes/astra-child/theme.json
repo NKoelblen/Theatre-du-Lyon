@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "settings": {
+    "spacing": {
+      "units": ["%","em","vh","vw"]
+      },
+    "typography": {
+      "customFontSize": true,
+      "customLineHeight": true,
+      "dropCap": true,
+      "fontSizes": [
+        {
+          "size": "12px",
+          "name": "Small",
+          "slug": "small"
+        },
+        {
+          "size": "16px",
+          "name": "Medium",
+          "slug": "medium"
+        },
+        {
+          "size": "32px",
+          "name": "Large",
+          "slug": "large"
+        },
+        {
+          "size": "48px",
+          "name": "Extra Large",
+          "slug": "x-large"
+        }
+      ]
+    }
+  }
+}

@@ -37,7 +37,7 @@ function spectacles_post_type()
         'description'           => __('Spectacles', 'text_domain'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail', 'excerpt'),
-        'taxonomies'            => array(),
+        'taxonomies'            => array('category'),
         'hierarchical'          => false,
         'public'                => true,
         'show_in_rest'          => true, // Gutenberg
