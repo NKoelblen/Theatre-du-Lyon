@@ -9,7 +9,7 @@ class MetaboxGenerator
 
     public function __construct()
     {
-        add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
+        add_action('add_meta_boxes', [$this, 'add']);
         add_action('save_post', [$this, 'save_fields']);
     } // End of __construct
 
@@ -26,25 +26,25 @@ class MetaboxGenerator
 
     // Metabox
 
-    public function add_meta_boxes()
+    public function add()
     {
         foreach ($this->screens as $screen) :
             add_meta_box(
                 'MetaboxGenerator',
                 __('Informations', 'textdomain'),
-                [$this, 'meta_box_callback'],
+                [$this, 'callback'],
                 $screen,
                 'normal',
                 'default'
             );
         endforeach;
-    } // End of add_meta_boxes
+    } // End of add
 
-    public function meta_box_callback($post)
+    public function callback($post)
     {
         wp_nonce_field('MetaboxGenerator_data', 'MetaboxGenerator_nonce');
         $this->field_generator($post);
-    } // End of meta_box_callback
+    } // End of callback
 
 
     // Form fields
@@ -217,7 +217,7 @@ class MetaboxGenerator
             </fieldset>
             <hr>
 
-    <?php endforeach; // Endforeach groups
+<?php endforeach; // Endforeach groups
 
     } // End of field_generator
 
@@ -251,37 +251,3 @@ class MetaboxGenerator
     } // End of save_fields
 
 } // End of MetaboxGenerator
-
-// Repeatable JQuery
-add_action('admin_footer', 'repeatable_field_footer');
-function repeatable_field_footer()
-{
-    ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            jQuery(document).on('click', '.remove-item', function() {
-                jQuery(this).parents('tr.sub-row').remove();
-            });
-            jQuery(document).on('click', '.add-item', function() {
-                var p_this = jQuery(this);
-                var row_no = parseFloat(jQuery('.item-table tr.sub-row').length);
-                var row_html = jQuery('.item-table .hide-tr').html().replace(/rand_no/g, row_no).replace(/hide_/g, '');
-                jQuery('.item-table tbody').append('<tr class="sub-row">' + row_html + '</tr>');
-            });
-        });
-    </script>
-<?php
-}
-
-// Repeatable Style
-add_action('admin_head', 'repeatable_field_header');
-function repeatable_field_header()
-{
-?>
-    <style type="text/css">
-        .hide-tr {
-            display: none;
-        }
-    </style>
-<?php
-}

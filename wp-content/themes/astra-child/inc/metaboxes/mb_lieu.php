@@ -9,21 +9,6 @@ $mb_lieu->set_screens(['lieu']);
 $mb_lieu->set_fields(
     [
         [
-            'group_label' => 'Site internet',
-            [
-                'label' => 'URL',
-                'id'    => 'website-url',
-                'type'  => 'url',
-                'width' => '49.7%'
-            ],
-            [
-                'label' => 'Texte de remplacement',
-                'id'    => 'website-label',
-                'type'  => 'text',
-                'width' => '49.7%'
-            ],
-        ],
-        [
             'group_label' => 'Adresse',
             [
                 'label' => 'Complément d\'adresse',
@@ -52,6 +37,21 @@ $mb_lieu->set_fields(
                 'type'  => 'text',
                 'width' => '74.7%'
             ]
+        ],
+        [
+            'group_label' => 'Site internet',
+            [
+                'label' => 'URL',
+                'id'    => 'website-url',
+                'type'  => 'url',
+                'width' => '49.7%'
+            ],
+            [
+                'label' => 'Texte de remplacement',
+                'id'    => 'website-label',
+                'type'  => 'text',
+                'width' => '49.7%'
+            ],
         ],
         [
             'group_label' => '',
