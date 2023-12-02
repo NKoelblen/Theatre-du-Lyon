@@ -18,17 +18,22 @@ define('ASTRA_CHILD_DIR', trailingslashit(get_theme_file_path()));
  * Enqueue styles
  */
 
-function child_enqueue_styles()
+function enqueue_parent_style()
 {
-
-	wp_enqueue_style('astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), filemtime(get_stylesheet_directory_uri() . '/style.css'), 'all');
+	wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
+add_action('wp_enqueue_scripts', 'enqueue_parent_style');
 
-add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
+function enqueue_child_style()
+{
+	wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'));
+	wp_enqueue_style('main-style', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/main.css'));
+}
+add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
 
 function child_enqueue_admin_styles()
 {
-	wp_enqueue_style('admin-style', get_template_directory_uri() . '/assets/css/admin-style.css', array(), filemtime(get_template_directory_uri() . '/assets/css/admin-style.css'), 'all');
+	wp_enqueue_style('astra-child-theme-admin-style', get_stylesheet_directory_uri() . '/assets/css/admin-style.css');
 }
 
 add_action('admin_enqueue_scripts', 'child_enqueue_admin_styles', 15);
