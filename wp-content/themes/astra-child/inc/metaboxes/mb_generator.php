@@ -58,6 +58,7 @@ class MetaboxGenerator
 
     public function field_generator($post)
     {
+
         foreach ($this->fields as $fields_group) : ?>
 
             <!-- Form groups -->

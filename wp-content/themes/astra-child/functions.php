@@ -64,6 +64,7 @@ require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_generator.php';
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_spectacle.php';
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_lieu.php';
 require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_calendrier.php';
+require_once ASTRA_CHILD_DIR . 'inc/metaboxes/mb_collaborateur.php';
 
 /**
  * Remove native custom fields metabox
@@ -105,10 +106,11 @@ function full_textual_date_fr($date)
 	return $jours[date("w", $date)] . " " . date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
 }
 
-add_action('admin_init', 'remove_menu_comments');
-function remove_menu_comments()
+add_filter('admin_menu', 'remove_menus');
+function remove_menus()
 {
 	remove_menu_page('edit-comments.php');
+	remove_submenu_page('admin.php?page=astra', 'admin.php?page=theme-builder-free');
 }
 
 add_filter('astra_tablet_breakpoint', function () {
