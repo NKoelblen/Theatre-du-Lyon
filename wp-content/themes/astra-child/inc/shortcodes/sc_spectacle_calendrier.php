@@ -28,7 +28,7 @@ function calendrier_shortcode()
                 <?php while ($calendrier_posts->have_posts()) :
                     $calendrier_posts->the_post(); ?>
 
-                    <div style="width: 100%;" class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-layout-1 wp-block-group-is-layout-flex">
+                    <div class="lieu-dates">
 
                         <?php $calendrier_id = get_the_ID();
 
@@ -45,147 +45,137 @@ function calendrier_shortcode()
                         endforeach;
                         $publics = array_unique($publics);
                         $dates = array_unique($dates);
+                        sort($dates);
                         $publics_dates = array_map("unserialize", array_unique(array_map("serialize", $publics_dates)));
                         $mois_abreges = ["Janv.", "Fevr.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Dec."];
                         $mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
                         $jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]; ?>
 
-                        <div class="dates-title" style="width: 190.19px;">
+                        <h3 style="text-align: center;">
+                            <?php echo " du " . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " ");
+                            if (date('m', strtotime($dates[0])) !== date('m', strtotime(end($dates)))) :
+                                echo $mois[date("n", strtotime($dates[0])) - 1];
+                            endif;
+                            if (date('Y', strtotime($dates[0])) !== date('Y', strtotime(end($dates)))) :
+                                echo " " . date("Y", strtotime($dates[0]));
+                            endif;
+                            echo " au " . date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "er " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
+                        </h3>
 
-                            <h3><?php echo " du " . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " "); ?></h3>
-                            <?php if (date('m', strtotime($dates[0])) !== date('m', strtotime(end($dates)))) : ?>
-                                <h3><?php echo $mois[date("n", strtotime($dates[0])) - 1]; ?></h3>
-                            <?php endif;
-                            if (date('Y', strtotime($dates[0])) !== date('Y', strtotime(end($dates)))) : ?>
-                                <h3><?php echo date("Y", strtotime($dates[0])); ?></h3>
-                            <?php endif; ?>
+                        <?php $c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
 
-                            <h3><?php echo " au " . date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "er " : " ") ?></h3>
-                            <h3><?php echo $mois[date("n", strtotime(end($dates))) - 1] ?></h3>
-                            <h3><?php echo date("Y", strtotime(end($dates))); ?></h3>
+                        $lieu_posts = new WP_Query(
+                            [
+                                'p'         => $c_lieu_id,
+                                'post_type' => 'any'
 
-                        </div>
-                        <div class="single-lieu-dates" style="width: 100%;">
+                            ]
+                        );
 
-                            <?php $c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
+                        if ($lieu_posts->have_posts()) : ?>
+                            <div>
+                                <table class="table-calendrier">
+                                    <tr>
+                                        <td><span class="dashicons dashicons-location"></span></td>
+                                        <?php while ($lieu_posts->have_posts()) :
+                                            $lieu_posts->the_post(); ?>
 
-                            $lieu_posts = new WP_Query(
-                                [
-                                    'p'         => $c_lieu_id,
-                                    'post_type' => 'any'
+                                            <td>
 
-                                ]
-                            );
+                                                <p><strong><?php echo get_the_title(); ?></strong></p>
 
-                            if ($lieu_posts->have_posts()) : ?>
-                                <div>
-                                    <table class="table-calendrier">
-                                        <tr>
-                                            <td><span class="dashicons dashicons-location"></span></td>
-                                            <?php while ($lieu_posts->have_posts()) :
-                                                $lieu_posts->the_post(); ?>
+                                                <?php if (get_post_meta($c_lieu_id, "adress1", true) != "") : ?>
+                                                    <p><strong><?php echo get_post_meta($c_lieu_id, "adress1", true); ?></strong></p>
+                                                <?php endif;
 
-                                                <td>
+                                                if (get_post_meta($c_lieu_id, "adress2", true) != "") : ?>
+                                                    <p><strong><?php echo get_post_meta($c_lieu_id, "adress2", true); ?></strong></p>
+                                                <?php endif;
 
-                                                    <p><strong><?php echo get_the_title(); ?></strong></p>
+                                                if (get_post_meta($c_lieu_id, "adress3", true) != "") : ?>
+                                                    <p><strong><?php echo get_post_meta($c_lieu_id, "adress3", true); ?></strong></p>
+                                                <?php endif;
 
-                                                    <?php if (get_post_meta($c_lieu_id, "adress1", true) != "") : ?>
-                                                        <p><strong><?php echo get_post_meta($c_lieu_id, "adress1", true); ?></strong></p>
-                                                    <?php endif;
+                                                if (get_post_meta($c_lieu_id, "postal-code", true) != "" || get_post_meta($c_lieu_id, "city", true) != "") : ?>
+                                                    <p><strong>
+                                                            <?php if (get_post_meta($c_lieu_id, "postal-code", true) != "") :
+                                                                echo get_post_meta($c_lieu_id, "postal-code", true) . " ";
+                                                            endif;
 
-                                                    if (get_post_meta($c_lieu_id, "adress2", true) != "") : ?>
-                                                        <p><strong><?php echo get_post_meta($c_lieu_id, "adress2", true); ?></strong></p>
-                                                    <?php endif;
+                                                            if (get_post_meta($c_lieu_id, "city", true) != "") :
+                                                                echo get_post_meta($c_lieu_id, "city", true);
+                                                            endif; ?>
+                                                        </strong></p>
+                                                <?php endif;
 
-                                                    if (get_post_meta($c_lieu_id, "adress3", true) != "") : ?>
-                                                        <p><strong><?php echo get_post_meta($c_lieu_id, "adress3", true); ?></strong></p>
-                                                    <?php endif;
+                                                if (get_post_meta($c_lieu_id, "informations", true) != "") : ?>
+                                                    <div><?php echo wpautop(get_post_meta($c_lieu_id, "informations", true)); ?></div>
+                                                <?php endif;
 
-                                                    if (get_post_meta($c_lieu_id, "postal-code", true) != "" || get_post_meta($c_lieu_id, "city", true) != "") : ?>
-                                                        <p><strong>
-                                                                <?php if (get_post_meta($c_lieu_id, "postal-code", true) != "") :
-                                                                    echo get_post_meta($c_lieu_id, "postal-code", true) . " ";
-                                                                endif;
+                                                if (get_post_meta($c_lieu_id, "website-url", true) != "") : ?>
+                                                    <p><strong>Site internet : </strong>
+                                                        <a href="<?php echo get_post_meta($c_lieu_id, "website-url", true); ?>" target="_blank">
+                                                            <?php if (get_post_meta($c_lieu_id, "website-label", true) != "") :
+                                                                echo get_post_meta($c_lieu_id, "website-label", true);
+                                                            else :
+                                                                echo get_post_meta($c_lieu_id, "website-url", true);
+                                                            endif; ?>
+                                                        </a>
+                                                    </p>
+                                                <?php endif; ?>
 
-                                                                if (get_post_meta($c_lieu_id, "city", true) != "") :
-                                                                    echo get_post_meta($c_lieu_id, "city", true);
-                                                                endif; ?>
-                                                            </strong></p>
-                                                    <?php endif;
+                                            </td>
 
-                                                    if (get_post_meta($c_lieu_id, "informations", true) != "") : ?>
-                                                        <div><?php echo wpautop(get_post_meta($c_lieu_id, "informations", true)); ?></div>
-                                                    <?php endif;
+                                        <?php endwhile; ?>
+                                    </tr>
+                                </table>
+                            </div>
+                        <?php endif;
+                        wp_reset_postdata(); ?>
 
-                                                    if (get_post_meta($c_lieu_id, "website-url", true) != "") : ?>
-                                                        <p><strong>Site internet : </strong>
-                                                            <a href="<?php echo get_post_meta($c_lieu_id, "website-url", true); ?>" target="_blank">
-                                                                <?php if (get_post_meta($c_lieu_id, "website-label", true) != "") :
-                                                                    echo get_post_meta($c_lieu_id, "website-label", true);
-                                                                else :
-                                                                    echo get_post_meta($c_lieu_id, "website-url", true);
-                                                                endif; ?>
-                                                            </a>
-                                                        </p>
-                                                    <?php endif; ?>
+                        <div class="dates-and-times">
 
-                                                </td>
+                            <?php foreach ($publics as $public) : ?>
 
-                                            <?php endwhile; ?>
-                                        </tr>
-                                    </table>
-                                </div>
-                            <?php endif;
-                            wp_reset_postdata(); ?>
+                                <table class="table-calendrier">
+                                    <tbody>
 
-                            <div class="dates-and-times">
+                                        <?php if ($public != "") : ?>
 
-                                <?php foreach ($publics as $public) : ?>
+                                            <tr>
+                                                <th><span class="dashicons dashicons-clock"></span></th>
+                                                <th colspan="2"><?php echo $public; ?></th>
+                                            </tr>
 
-                                    <table class="table-calendrier">
-                                        <!-- <colgroup>
-                                            <col span="1" style="width: 1%;">
-                                            <col span="1">
-                                        </colgroup> -->
-                                        <tbody>
+                                        <?php endif; ?>
 
-                                            <?php if ($public != "") : ?>
+                                        <?php foreach ($publics_dates as $date) :
+
+                                            if ($date['public'] === $public) : ?>
 
                                                 <tr>
-                                                    <th><span class="dashicons dashicons-clock"></span></th>
-                                                    <th colspan="2"><?php echo $public; ?></th>
+                                                    <td></td>
+                                                    <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "er " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
+                                                    <td>
+
+                                                        <?php foreach ($c_times as $time) :
+
+                                                            if ($time['public'] === $date['public'] && $time['date'] === $date['date']) : ?>
+
+                                                                <p><?php echo date_format(date_create($time['heure']), 'H\hi'); ?></p>
+                                                        <?php endif;
+
+                                                        endforeach; ?>
+                                                    </td>
                                                 </tr>
+                                        <?php endif;
 
-                                            <?php endif; ?>
+                                        endforeach; ?>
 
-                                            <?php foreach ($publics_dates as $date) :
+                                    </tbody>
+                                </table>
 
-                                                if ($date['public'] === $public) : ?>
-
-                                                    <tr>
-                                                        <td>
-                                                        <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "er " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
-                                                        <td>
-
-                                                            <?php foreach ($c_times as $time) :
-
-                                                                if ($time['public'] === $date['public'] && $time['date'] === $date['date']) : ?>
-
-                                                                    <p><?php echo date_format(date_create($time['heure']), 'H\hi'); ?></p>
-                                                            <?php endif;
-
-                                                            endforeach; ?>
-                                                        </td>
-                                                    </tr>
-                                            <?php endif;
-
-                                            endforeach; ?>
-
-                                        </tbody>
-                                    </table>
-
-                                <?php endforeach; ?>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endwhile; ?>
