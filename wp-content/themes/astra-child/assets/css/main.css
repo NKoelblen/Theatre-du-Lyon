@@ -1,17 +1,20 @@
-.site-content * {
+html body {
+    --wp--custom--ast-container-width: calc(100vw / 1.618) !important;
+    --wp--custom--ast-content-width-size: calc(100vw / 1.618) !important;
+    --wp--custom--ast-wide-width-size: calc(calc(100vw / 1.618) + var(--wp--custom--ast-default-block-left-padding) + var(--wp--custom--ast-default-block-right-padding)) !important;
+  }
+
+.site-content *, .wp-block-cover * {
     margin: 0 !important;
-}
-.entry-content {
-    max-width: var(--wp--custom--ast-content-width-size) !important;
-    margin: auto !important
 }
 .ast-container {
     padding: 0 !important;
     max-width: var(--wp--custom--ast-content-width-size) !important;
     margin: auto !important
 }
-.wp-block-cover * {
-    margin: 0 !important;
+.entry-content {
+    max-width: var(--wp--custom--ast-content-width-size) !important;
+    margin: auto !important
 }
 .alignfull {
     width: 100vw !important;
@@ -28,41 +31,18 @@
     min-width: 320px !important;
 }
 
-td {
-    border-right-color: var(--wp--preset--color--ast-global-color-0) !important;
-    border-left-color: var(--wp--preset--color--ast-global-color-0) !important;
-}
 .wp-block-cover .wp-block-cover__inner-container, .wp-block-cover-image .wp-block-cover__inner-container {
     max-width: 100% !important;
 }
 .wp-block-embed {
     width: 100%;
 }
-.home .site-branding.ast-site-identity {
-    display: none !important;
-}
-.home .ast-primary-header-bar {
-    background-color: transparent !important;
-}
-.home .site-content {
-    margin-top: -80px !important;
-}
-.swiper-pagination-bullet {
-    margin: 0 0.5em !important;
+
+td {
+    border-right-color: var(--wp--preset--color--ast-global-color-0) !important;
+    border-left-color: var(--wp--preset--color--ast-global-color-0) !important;
 }
 
-.calendrier-spectacle {
-    width: calc(100vw / 1.618 / 1.618) !important;
-    height: calc(100vw / 1.618 / 1.618 / 1.618) ;
-    background-size: cover;
-    background-position: center;
-    margin: auto !important;
-}
-.lieu-dates {
-    width: calc(100vw / 1.618);
-    margin: auto !important;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
+.swiper-pagination-bullet {
+    margin: 0 0.5em !important;
 }

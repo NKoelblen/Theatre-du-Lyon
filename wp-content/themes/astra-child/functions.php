@@ -28,6 +28,8 @@ function enqueue_child_style()
 {
 	wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'));
 	wp_enqueue_style('main-style', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/main.css'));
+	wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/home.css'));
+	wp_enqueue_style('calendriers-style', get_stylesheet_directory_uri() . '/assets/css/calendriers.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/calendriers.css'));
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
 

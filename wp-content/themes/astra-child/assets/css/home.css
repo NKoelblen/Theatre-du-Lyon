@@ -1,0 +1,9 @@
+.home .site-branding.ast-site-identity {
+    display: none !important;
+}
+.home .ast-primary-header-bar {
+    background-color: transparent !important;
+}
+.home .site-content {
+    margin-top: -80px !important;
+}

@@ -130,7 +130,8 @@ class MetaboxGenerator
                                             <?php foreach ($meta_values as $item_key => $item_values) : ?>
                                                 <tr class="sub-row">
                                                     <?php foreach ($item_values as $item_value) : ?>
-                                                        <td><input type="<?php echo $item_value['type'] ?>" name="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" value="<?php echo $item_value['value'] ?>"></td>
+                                                        <td><input type="<?php echo $item_value['type'] ?>" name="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" value="<?php echo $item_value['value'] ?>" <?php if (isset($item_value['accept'])) : echo 'accept="' . $item_value['accept'] . '"';
+                                                                                                                                                                                                                                                                                                                                                        endif; ?>></td>
                                                     <?php endforeach; // Endforeach item_value 
                                                     ?>
                                                     <td><button class="remove-item button" type="button">Supprimer</button></td>
@@ -140,7 +141,8 @@ class MetaboxGenerator
                                         <?php else : ?>
                                             <tr class="sub-row">
                                                 <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
-                                                    <td><input type="<?php echo $repeatable_field['type'] ?>" name="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>"></td>
+                                                    <td><input type="<?php echo $repeatable_field['type'] ?>" name="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" <?php if (isset($repeatable_field['accept'])) : echo 'accept="' . $repeatable_field['accept'] . '"';
+                                                                                                                                                                                                                                                                                            endif; ?>></td>
                                                 <?php endforeach; // Endforeach repeatable_field 
                                                 ?>
                                                 <td><button class="remove-item button" type="button">Supprimer</button></td>
@@ -149,7 +151,8 @@ class MetaboxGenerator
                                         ?>
                                         <tr class="hide-tr">
                                             <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
-                                                <td><input type="<?php echo $repeatable_field['type'] ?>" name="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" id="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>"></td>
+                                                <td><input type="<?php echo $repeatable_field['type'] ?>" name="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" id="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" <?php if (isset($repeatable_field['accept'])) : echo 'accept="' . $repeatable_field['accept'] . '"';
+                                                                                                                                                                                                                                                                                                            endif; ?>></td>
                                             <?php endforeach; // Endforeach repeatable_field 
                                             ?>
                                             <td><button class="remove-item button" type="button">Supprimer</button></td>
