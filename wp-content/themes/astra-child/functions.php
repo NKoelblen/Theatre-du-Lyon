@@ -106,6 +106,13 @@ function full_textual_date_fr($date)
 	return $jours[date("w", $date)] . " " . date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
 }
 
+function abr_textual_date_fr($date)
+{
+	$mois = ["Janv.", "Fevr.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Dec."];
+
+	return date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
+}
+
 add_filter('admin_menu', 'remove_menus');
 function remove_menus()
 {

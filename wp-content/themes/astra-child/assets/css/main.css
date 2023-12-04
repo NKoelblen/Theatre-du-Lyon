@@ -50,3 +50,19 @@ td {
 .swiper-pagination-bullet {
     margin: 0 0.5em !important;
 }
+
+.calendrier-spectacle {
+    width: calc(100vw / 1.618 / 1.618) !important;
+    height: calc(100vw / 1.618 / 1.618 / 1.618) ;
+    background-size: cover;
+    background-position: center;
+    margin: auto !important;
+}
+.lieu-dates {
+    width: calc(100vw / 1.618);
+    margin: auto !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
