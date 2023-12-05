@@ -7,15 +7,18 @@ html body {
 .site-content *, .wp-block-cover * {
     margin: 0 !important;
 }
+
 .ast-container {
     padding: 0 !important;
+    /* max-width: var(--wp--custom--ast-content-width-size) !important; */
+    margin: auto !important
+}
+
+article.spectacle .entry-content {
     max-width: var(--wp--custom--ast-content-width-size) !important;
     margin: auto !important
 }
-.entry-content {
-    max-width: var(--wp--custom--ast-content-width-size) !important;
-    margin: auto !important
-}
+
 .alignfull {
     width: 100vw !important;
     margin-right: 0 !important;
@@ -34,6 +37,7 @@ html body {
 .wp-block-cover .wp-block-cover__inner-container, .wp-block-cover-image .wp-block-cover__inner-container {
     max-width: 100% !important;
 }
+
 .wp-block-embed {
     width: 100%;
 }

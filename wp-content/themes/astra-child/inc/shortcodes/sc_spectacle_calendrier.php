@@ -52,14 +52,22 @@ function calendrier_shortcode()
                         $jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]; ?>
 
                         <h3 style="text-align: center;">
-                            <?php echo " du " . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " ");
+                            <?php
+                            if (date('j', strtotime($dates[0])) !== date('j', strtotime(end($dates)))) :
+                                echo " du " . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " ");
+                            endif;
                             if (date('m', strtotime($dates[0])) !== date('m', strtotime(end($dates)))) :
                                 echo $mois[date("n", strtotime($dates[0])) - 1];
                             endif;
                             if (date('Y', strtotime($dates[0])) !== date('Y', strtotime(end($dates)))) :
                                 echo " " . date("Y", strtotime($dates[0]));
                             endif;
-                            echo " au " . date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "er " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
+                            if (date('j', strtotime($dates[0])) !== date('j', strtotime(end($dates)))) :
+                                echo " au ";
+                            else :
+                                echo "le ";
+                            endif;
+                            echo date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "<sup>er</sup> " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
                         </h3>
 
                         <?php $c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
@@ -154,8 +162,12 @@ function calendrier_shortcode()
                                             if ($date['public'] === $public) : ?>
 
                                                 <tr>
-                                                    <td></td>
-                                                    <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "er " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
+                                                    <td>
+                                                        <?php if ($date['public'] === "") : ?>
+                                                            <span class="dashicons dashicons-clock"></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "<sup>er</sup> " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
                                                     <td>
 
                                                         <?php foreach ($c_times as $time) :
@@ -168,6 +180,7 @@ function calendrier_shortcode()
                                                         endforeach; ?>
                                                     </td>
                                                 </tr>
+
                                         <?php endif;
 
                                         endforeach; ?>

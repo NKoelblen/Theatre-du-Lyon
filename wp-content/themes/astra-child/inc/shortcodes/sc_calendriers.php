@@ -35,8 +35,8 @@ function calendriers_shortcode()
                         while ($spectacle_posts->have_posts()) :
                             $spectacle_posts->the_post(); ?>
                             <div class="calendrier-spectacle" style="background-image: url(<?php echo get_the_post_thumbnail_url($c_spectacle_id); ?>);">
-                                <h2 class="has-text-align-center"><?php echo get_the_title(); ?></h2>
                                 <a href="<?php echo get_the_permalink(); ?>"></a>
+                                <h2 class="has-text-align-center"><?php echo get_the_title(); ?></h2>
                             </div>
 
                     <?php endwhile;
@@ -79,7 +79,7 @@ function calendriers_shortcode()
                             else :
                                 echo "le ";
                             endif;
-                            echo date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "er " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
+                            echo date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "<sup>er</sup> " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
                         </h3>
 
                         <?php $c_lieu_id = get_post_meta($calendrier_id, "lieu", true);
@@ -179,7 +179,7 @@ function calendriers_shortcode()
                                                             <span class="dashicons dashicons-clock"></span>
                                                         <?php endif; ?>
                                                     </td>
-                                                    <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "er " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
+                                                    <td><?php echo $jours[date("w", strtotime($date['date']))] . " " . date("j", strtotime($date['date'])) . (date("j", strtotime($date['date'])) == 1 ? "<sup>er</sup> " : " ") . $mois_abreges[date("n", strtotime($date['date'])) - 1]; ?></td>
                                                     <td>
 
                                                         <?php foreach ($c_times as $time) :
