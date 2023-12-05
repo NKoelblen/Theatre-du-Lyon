@@ -13,10 +13,11 @@ html body {
     /* max-width: var(--wp--custom--ast-content-width-size) !important; */
     margin: auto !important
 }
-
+.entry-content {
+    margin: auto !important;
+}
 article.spectacle .entry-content {
-    max-width: var(--wp--custom--ast-content-width-size) !important;
-    margin: auto !important
+    max-width: var(--wp--custom--ast-content-width-size) !important;    
 }
 
 .alignfull {

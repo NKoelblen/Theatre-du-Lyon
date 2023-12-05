@@ -30,6 +30,7 @@ function enqueue_child_style()
 	wp_enqueue_style('main-style', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/main.css'));
 	wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/home.css'));
 	wp_enqueue_style('calendriers-style', get_stylesheet_directory_uri() . '/assets/css/calendriers.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/calendriers.css'));
+	wp_enqueue_style('spectacle-breadcrumb-style', get_stylesheet_directory_uri() . '/assets/css/spectacle-breadcrumb.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacle-breadcrumb.css'));
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
 
@@ -43,6 +44,14 @@ add_action('admin_enqueue_scripts', 'child_enqueue_admin_styles', 15);
 /**
  * Enqueue scripts
  */
+function child_enqueue_scripts()
+{
+	wp_register_script('spectacle_breadcrumb', get_theme_file_uri('/assets/js/spectacle_breadcrumb.js'), '', false, true);
+	wp_enqueue_script('spectacle_breadcrumb');
+}
+
+add_action('wp_enqueue_scripts', 'child_enqueue_scripts');
+
 function child_enqueue_admin_scripts()
 {
 	wp_register_script('metaboxes', get_theme_file_uri('/assets/js/metaboxes.js'), '', false, true);
@@ -87,6 +96,7 @@ add_action('admin_menu', 'remove_custom_meta_form');
  */
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_calendrier.php';
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_calendriers.php';
+require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_breadcrumb.php';
 
 /**
  * Remove autosave

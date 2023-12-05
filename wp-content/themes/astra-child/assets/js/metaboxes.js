@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-    console.log('metaboxes')
     jQuery(document).on('click', '.remove-item', function() {
         jQuery(this).parents('tr.sub-row').remove();
     });

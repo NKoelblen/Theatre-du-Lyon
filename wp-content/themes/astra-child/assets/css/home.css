@@ -7,3 +7,6 @@
 .home .site-content {
     margin-top: -80px !important;
 }
+.home .entry-content {
+    max-width: var(--wp--custom--ast-content-width-size) !important;    
+}

@@ -23,7 +23,7 @@ function calendrier_shortcode()
         if ($calendrier_posts->have_posts()) : ?>
 
             <div style="width: 100%;" class="wp-block-group is-vertical is-content-justification-center is-layout-flex wp-container-core-group-layout-5 wp-block-group-is-layout-flex">
-                <h2 class="wp-block-heading has-text-align-center">Représentations</h2>
+                <h2 id="representations" class="wp-block-heading has-text-align-center">Représentations</h2>
 
                 <?php while ($calendrier_posts->have_posts()) :
                     $calendrier_posts->the_post(); ?>
