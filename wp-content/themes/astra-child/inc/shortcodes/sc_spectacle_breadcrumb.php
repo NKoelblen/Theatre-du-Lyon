@@ -4,16 +4,6 @@ add_shortcode('breadcrumb', 'breadcrumb_shortcode');
 function breadcrumb_shortcode()
 {
     ob_start(); ?>
-
-
-    <table class="spectacle-breadcrumb alignfull">
-        <tbody>
-            <tr>
-
-            </tr>
-        </tbody>
-    </table>
-
-
+    <div class="alignfull spectacle-breadcrumb"></div>
 <?php return ob_get_clean();
 }

@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     $("article.spectacle *:not(.swiper-wrapper)").each(function () {
         if (this.id) {
             elements.push("#" + this.id);
-            jQuery('table.spectacle-breadcrumb tbody tr').append('<td><a class="spectacle-breadcrumb-link" href="#' + this.id + '">' + this.innerText + '</a></td>');
+            $('div.spectacle-breadcrumb').append('<p><a class="spectacle-breadcrumb-link" href="#' + this.id + '">' + this.innerText + '</a></p>');
         }
     });
     $.each( elements, function( key, value ) {
@@ -13,11 +13,12 @@ jQuery(document).ready(function($) {
             $(value).each(function() {
                 var window_bottom = $(window).height();
                 var target = $(this).offset().top;
-                var id = $(this).attr('id');
-                var navLinks = $('table.spectacle-breadcrumb tr td a');
-                if (position >= target - window_bottom) {
+                $(value).addClass('scroll-margin-top');
+                var navLinks = $('div.spectacle-breadcrumb p a');
+                var scroll_target = target - window_bottom / 3 * 2;
+                if (position >= scroll_target) {
                     navLinks.removeClass('spectacle-breadcrumb-current');
-                    $('table.spectacle-breadcrumb tr td a[href="#' + id + '"]').addClass('spectacle-breadcrumb-current');
+                    $('div.spectacle-breadcrumb p a[href="' + value + '"]').addClass('spectacle-breadcrumb-current');
                 }
             });
         });
