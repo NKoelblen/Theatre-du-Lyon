@@ -19,3 +19,10 @@
 .spectacle-breadcrumb-current {
     color: var(--ast-global-color-0) !important;
 }
+
+/* .swiper-button-prev::after, .swiper-rtl .swiper-button-next::after {
+    content: "\f341";
+}
+.swiper-button-next::after, .swiper-rtl .swiper-button-prev::after {
+    content: "\f345";
+} */

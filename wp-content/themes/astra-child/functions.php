@@ -32,6 +32,7 @@ function enqueue_child_style()
 	wp_enqueue_style('calendriers-style', get_stylesheet_directory_uri() . '/assets/css/calendriers.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/calendriers.css'));
 	wp_enqueue_style('spectacle-breadcrumb-style', get_stylesheet_directory_uri() . '/assets/css/spectacle-breadcrumb.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacle-breadcrumb.css'));
 	wp_enqueue_style('spectacles-style', get_stylesheet_directory_uri() . '/assets/css/spectacles.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacles.css'));
+	wp_enqueue_style('dashicons');
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
 
@@ -47,6 +48,7 @@ add_action('admin_enqueue_scripts', 'child_enqueue_admin_styles', 15);
  */
 function child_enqueue_scripts()
 {
+	wp_enqueue_script('jquery');
 	wp_register_script('spectacle_breadcrumb', get_theme_file_uri('/assets/js/spectacle_breadcrumb.js'), '', false, true);
 	wp_enqueue_script('spectacle_breadcrumb');
 }
