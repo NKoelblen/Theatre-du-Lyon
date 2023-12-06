@@ -12,6 +12,7 @@
 .unique-spectacle {
     width: calc(100vw / 1.618 / 1.618 / 1.618);
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 1em;
 }
