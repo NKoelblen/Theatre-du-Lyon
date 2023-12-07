@@ -16,12 +16,24 @@
     flex-direction: column;
     gap: 1em;
 }
+.spectacles-thumbnail-link {
+    position: relative;
+}
 
-.unique-spectacle img {
+.spectacles-thumbnail {
     width: calc(100vw / 1.618 / 1.618 / 1.618);
     height: calc(100vw / 1.618 / 1.618 / 1.618 / 1.618);
     object-fit: cover;
     object-position: 50% 50%;
+}
+
+.les-essentiels-du-lyon {
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    top: -1em;
+    right: -1em;
+    
 }
 
 .unique-spectacle h2 {

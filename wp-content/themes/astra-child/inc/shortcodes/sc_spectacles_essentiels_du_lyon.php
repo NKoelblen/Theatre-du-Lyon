@@ -1,7 +1,7 @@
 <?php
 
-add_shortcode('spectacles', 'spectacles_shortcode');
-function spectacles_shortcode()
+add_shortcode('les-essentiels-du-lyon', 'spectacles_essentiels_shortcode');
+function spectacles_essentiels_shortcode()
 {
     ob_start(); ?>
 
@@ -11,6 +11,7 @@ function spectacles_shortcode()
             [
                 'post_type'     => 'spectacle',
                 'post_status'   => 'publish',
+                'category_name'      => 'les-essentiels-du-lyon',
                 'order'         => 'ASC',
                 'orderby'       => 'title'
             ]
@@ -20,21 +21,12 @@ function spectacles_shortcode()
             while ($spectacle_posts->have_posts()) :
                 $spectacle_posts->the_post();
 
-                $id = get_the_id();
-                $categories = get_the_category($id); ?>
+                $id = get_the_id(); ?>
 
                 <div class="unique-spectacle">
 
-                    <a href="<?php echo get_the_permalink(); ?>" class="spectacles-thumbnail-link">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="spectacles-thumbnail">
+                    <a href="<?php echo get_the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" class="spectacles-thumbnail"></a>
 
-                        <?php foreach ($categories as $categorie) :
-                            $categorie_name = $categorie->cat_name;
-                            if ($categorie_name === "Les essentiels du Lyon") : ?>
-                                <img src="<?php echo get_site_url() ?>/wp-content/themes/astra-child/assets/images/Pastille essentiels du lyon.webp" class="les-essentiels-du-lyon">
-                        <? endif;
-                        endforeach; ?>
-                    </a>
                     <hgroup>
                         <h2 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
                         <p style="text-align: center;"><?php echo get_post_meta($id, 'subtitle', true); ?></p>
@@ -75,7 +67,7 @@ function spectacles_shortcode()
                                 <p style="text-align: center;">
                                     <?php
                                     if (date('j', strtotime($dates[0])) !== date('j', strtotime(end($dates)))) :
-                                        echo "<span class=\"gold\">du </span>" . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " ");
+                                        echo " du " . date("j", strtotime($dates[0])) . (date("j", strtotime($dates[0])) == 1 ? "er " : " ");
                                     endif;
                                     if (date('m', strtotime($dates[0])) !== date('m', strtotime(end($dates)))) :
                                         echo $mois[date("n", strtotime($dates[0])) - 1];
@@ -84,9 +76,9 @@ function spectacles_shortcode()
                                         echo " " . date("Y", strtotime($dates[0]));
                                     endif;
                                     if (date('j', strtotime($dates[0])) !== date('j', strtotime(end($dates)))) :
-                                        echo "<span class=\"gold\"> au </span>";
+                                        echo " au ";
                                     else :
-                                        echo "<span class=\"gold\">le </span>";
+                                        echo "le ";
                                     endif;
                                     echo date("j", strtotime(end($dates))) . (date("j", strtotime(end($dates))) == 1 ? "<sup>er</sup> " : " ") . $mois[date("n", strtotime(end($dates))) - 1] . " " . date("Y", strtotime(end($dates))); ?>
                                 </p>
@@ -105,7 +97,7 @@ function spectacles_shortcode()
                                     <?php while ($lieu_posts->have_posts()) :
                                         $lieu_posts->the_post(); ?>
 
-                                        <p style="text-align: center;"><span class="gold">au </span><?php echo get_the_title(); ?></p>
+                                        <p style="text-align: center;"><?php echo " au " . get_the_title(); ?></p>
 
                         <?php endwhile;
                                 endif;
