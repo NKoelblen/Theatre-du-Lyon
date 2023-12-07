@@ -63,3 +63,7 @@ td {
 .swiper-pagination-bullet {
     margin: 0 0.5em !important;
 }
+
+.entry-header * {
+    text-align: center;
+}

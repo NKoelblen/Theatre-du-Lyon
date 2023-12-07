@@ -34,6 +34,7 @@ function enqueue_child_style()
 	wp_enqueue_style('spectacles-style', get_stylesheet_directory_uri() . '/assets/css/spectacles.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacles.css'));
 	wp_enqueue_style('espace-pro-style', get_stylesheet_directory_uri() . '/assets/css/espace-pro.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/espace-pro.css'));
 	wp_enqueue_style('collaborateurs-style', get_stylesheet_directory_uri() . '/assets/css/collaborateurs.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/collaborateurs.css'));
+	wp_enqueue_style('actualites-style', get_stylesheet_directory_uri() . '/assets/css/actualites.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/actualites.css'));
 	wp_enqueue_style('dashicons');
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
@@ -108,6 +109,7 @@ require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_informations.php';
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_spectacle_hgroup.php';
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_espace_pro.php';
 require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_collaborateurs.php';
+require_once ASTRA_CHILD_DIR . 'inc/shortcodes/sc_actualites.php';
 
 /**
  * Remove autosave

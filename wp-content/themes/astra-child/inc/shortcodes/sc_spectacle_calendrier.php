@@ -13,10 +13,11 @@ function calendrier_shortcode()
 
         $calendrier_posts = new WP_Query(
             [
-                'post_type'     => 'calendrier',
-                'post_status'   => 'publish',
-                'meta_key'      => 'spectacle',
-                'meta_value'    => $post_id
+                'post_type'         => 'calendrier',
+                'post_status'       => 'publish',
+                'meta_key'          => 'spectacle',
+                'meta_value'        => $post_id,
+                'posts_per_page'    => -1
             ]
         );
 

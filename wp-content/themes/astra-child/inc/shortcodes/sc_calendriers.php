@@ -7,8 +7,9 @@ function calendriers_shortcode()
     <div class="calendriers">
         <?php $calendrier_posts = new WP_Query(
             [
-                'post_type'     => 'calendrier',
-                'post_status'   => 'publish'
+                'post_type'         => 'calendrier',
+                'post_status'       => 'publish',
+                'posts_per_page'    => -1
             ]
         );
 

@@ -38,10 +38,11 @@ function dossiers_pro_shortcode()
 
             <?php $spectacle_posts = new WP_Query(
                 [
-                    'post_type'     => 'spectacle',
-                    'post_status'   => 'publish',
-                    'order'         => 'ASC',
-                    'orderby'       => 'title'
+                    'post_type'         => 'spectacle',
+                    'post_status'       => 'publish',
+                    'order'             => 'ASC',
+                    'orderby'           => 'title',
+                    'posts_per_page'    => -1
                 ]
             );
 

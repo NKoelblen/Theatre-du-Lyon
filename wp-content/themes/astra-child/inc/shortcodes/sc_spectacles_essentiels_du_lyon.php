@@ -9,11 +9,12 @@ function spectacles_essentiels_shortcode()
 
         <?php $spectacle_posts = new WP_Query(
             [
-                'post_type'     => 'spectacle',
-                'post_status'   => 'publish',
+                'post_type'         => 'spectacle',
+                'post_status'       => 'publish',
                 'category_name'      => 'les-essentiels-du-lyon',
-                'order'         => 'ASC',
-                'orderby'       => 'title'
+                'order'             => 'ASC',
+                'orderby'           => 'title',
+                'posts_per_page'    => -1
             ]
         );
 
@@ -42,10 +43,11 @@ function spectacles_essentiels_shortcode()
 
                         <?php $calendrier_posts = new WP_Query(
                             [
-                                'post_type'     => 'calendrier',
-                                'post_status'   => 'publish',
-                                'meta_key'      => 'spectacle',
-                                'meta_value'    => $id
+                                'post_type'         => 'calendrier',
+                                'post_status'       => 'publish',
+                                'meta_key'          => 'spectacle',
+                                'meta_value'        => $id,
+                                'posts_per_page'    => -1
                             ]
                         );
 

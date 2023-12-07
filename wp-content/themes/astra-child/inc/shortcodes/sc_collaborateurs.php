@@ -6,10 +6,11 @@ function collaborateurs_shortcode()
 
     $collaborateur_posts = new WP_Query(
         [
-            'post_type'     => 'collaborateur',
-            'post_status'   => 'publish',
-            'order'         => 'ASC',
-            'orderby'       => 'title'
+            'post_type'         => 'collaborateur',
+            'post_status'       => 'publish',
+            'order'             => 'ASC',
+            'orderby'           => 'title',
+            'posts_per_page'    => -1
         ]
     );
 

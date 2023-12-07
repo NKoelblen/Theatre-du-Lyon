@@ -8,7 +8,7 @@ RewriteRule ^(.*)$ http\:\/\/localhost\/theatredulyon\/$1 [R=301,L]
 # Start WPFC Exclude
 # End WPFC Exclude
 # Start_WPFC_Exclude_Admin_Cookie
-RewriteCond %{HTTP:Cookie} !wordpress_logged_in_[^\=]+\=Admin
+RewriteCond %{HTTP:Cookie} !wordpress_logged_in_[^\=]+\=JulienG|NoemieK
 # End_WPFC_Exclude_Admin_Cookie
 RewriteCond %{HTTP_HOST} ^localhost
 RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit|WP_FASTEST_CACHE_CSS_VALIDATOR|Twitterbot|LinkedInBot|WhatsApp|Mediatoolkitbot)
