@@ -23,15 +23,15 @@
 }
 
 .spectacles-thumbnail, .unique-actualite img {
-    width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio));
-    height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio) / var(--ratio));
+    width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio)) !important;
+    height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio) / var(--ratio)) !important;
     object-fit: cover;
     object-position: 50% 50%;
 }
 
 .les-essentiels-du-lyon {
-    width: 4em;
-    height: 4em;
+    width: 4em !important;
+    height: 4em !important;
     position: absolute;
     top: -1em;
     right: -1em;

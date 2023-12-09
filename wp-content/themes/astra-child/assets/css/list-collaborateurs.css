@@ -20,7 +20,7 @@
 
 .unique-collaborateur img {
     width: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
-    height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio));
+    height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio)) !important;
     object-fit: cover;
     object-position: 50% 50%;
 }

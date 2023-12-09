@@ -17,6 +17,10 @@ html body {
 body {
     font-size: 16.18px;
 }
+h1, h2, h3, h4, h5, h6 {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
 h1 {
     font-size: 4.5em !important;
 }
@@ -84,15 +88,25 @@ article, .entry-content {
     width: calc(100vw - var(--wp--custom--ast-container-width)) !important;
     max-width: unset !important;
 }
+.ast-mobile-popup-content {
+    padding-bottom: 2em;
+}
+.ast-mobile-popup-content h2 {
+    font-size: 2em !important;
+}
 
 /* Images */
 img {
+    width: var(--wp--custom--ast-content-width-size) !important;
+    max-width: var(--wp--custom--ast-content-width-size) !important;
     height: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
     object-fit: cover;
     object-position: 50% 50%;
 }
 img[style*="aspect-ratio:9/16"], img[style*="aspect-ratio:3/4"], img[style*="aspect-ratio:2/3"] {
-    height: calc(var(--wp--custom--ast-content-width-size) * var(--ratio)) !important;
+    width: min(calc((100vh - 5em) / var(--ratio)), var(--wp--custom--ast-content-width-size)) !important;
+    max-width: var(--wp--custom--ast-content-width-size) !important;
+    height: min(calc(100vh - 5em), calc(var(--wp--custom--ast-content-width-size) * var(--ratio))) !important;
 }
 
 /* Responsive */
@@ -130,6 +144,7 @@ img[style*="aspect-ratio:9/16"], img[style*="aspect-ratio:3/4"], img[style*="asp
 }
 
 @media (max-width: 520px) {
+
     h1 {
         font-size: max(9.33vw, 1.5em) !important;
     }
@@ -157,8 +172,20 @@ img[style*="aspect-ratio:9/16"], img[style*="aspect-ratio:3/4"], img[style*="asp
 }
 
 @media (max-width: 360px){
-    .entry-content section, .entry-content .wp-block-group {
+
+    .entry-content section:not(.alignfull), .entry-content .wp-block-group:not(.alignfull):not(.spectacle-content):not(.spectacle-content *) {
         width: calc(100vw - 2em) !important;
         margin: 0 auto !important;
+    }
+
+    img {
+        width: calc(100vw - 2em) !important;
+        max-width: calc(100vw - 2em) !important;
+        height: calc((100vw - 2em) / var(--ratio)) !important;
+    }
+    img[style*="aspect-ratio:9/16"], img[style*="aspect-ratio:3/4"], img[style*="aspect-ratio:2/3"] {
+        width: min(calc((100vh - 5em) / var(--ratio)), calc(100vw - 2em)) !important;
+        max-width: calc(100vw - 2em) !important;
+        height: min(calc(100vh - 5em), calc(calc(100vw - 2em) * var(--ratio))) !important;
     }
 }

@@ -9,7 +9,7 @@
     gap: 0;
 }
 
-.home-logo {
+.home-logo img {
     width: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
     height: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
 }
