@@ -1,0 +1,82 @@
+/* Main */
+.type-spectacle {
+    margin-top: -96.35px !important;
+}
+.single-spectacle .entry-content {
+    gap: 0 !important;
+}
+
+/* Slider : Simple Parallax effect on scroll */
+.spectacle-slider-group {
+    position: relative;
+    overflow: hidden;
+}
+.spectacle-hgroup {
+    position: absolute;
+    bottom: 5em;
+    left: 0;
+    z-index: 2;
+}
+.spectacle-hgroup p {
+    font-size: 1.5em;
+    font-style: italic;
+    color: white;
+}
+.wp-block-uagb-slider {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+.uagb-slides.uagb-swiper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh !important;
+}
+.spectacle-content {
+    position: relative;
+    z-index: 3;
+}
+.single-spectacle .post-navigation {
+    position: relative;
+    z-index: 3;
+    background-color: white;
+    padding-bottom: 8em;
+}
+.single-spectacle .site-footer {
+    margin: 0 !important;
+    position: relative;
+    z-index: 3;
+}
+
+/* Content */
+.spectacle-content > *:not(.alignfull) {
+    width: var(--wp--custom--ast-content-width-size) !important;
+}
+
+/* Breadcrumb */
+.spectacle-breadcrumb {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    padding: 1em;
+    border: var(--ast-global-color-0) solid 1px;
+    background-color: white;
+    z-index: 10;
+}
+.spectacle-breadcrumb-link {
+    color: var(--ast-global-color-1);
+}
+.spectacle-breadcrumb-link:hover {
+    color: var(--ast-global-color-0);
+}
+.spectacle-breadcrumb-current {
+    color: var(--ast-global-color-0) !important;
+}
+.scroll-margin-top {
+    scroll-margin-top: 4em;
+}
+
+
+

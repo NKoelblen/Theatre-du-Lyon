@@ -5,7 +5,7 @@ function spectacles_essentiels_shortcode()
 {
     ob_start(); ?>
 
-    <div class="spectacles-list">
+    <div class="spectacles-list alignfull">
 
         <?php $spectacle_posts = new WP_Query(
             [

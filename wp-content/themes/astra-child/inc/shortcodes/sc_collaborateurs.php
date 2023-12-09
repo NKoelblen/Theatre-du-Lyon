@@ -9,14 +9,14 @@ function collaborateurs_shortcode()
             'post_type'         => 'collaborateur',
             'post_status'       => 'publish',
             'order'             => 'ASC',
-            'orderby'           => 'title',
+            'orderby'           => 'menu_order',
             'posts_per_page'    => -1
         ]
     );
 
     if ($collaborateur_posts->have_posts()) : ?>
 
-        <div class="collaborateurs-list ">
+        <div class="collaborateurs-list alignfull">
 
             <?php while ($collaborateur_posts->have_posts()) : ?>
 

@@ -1,0 +1,74 @@
+.spectacles-list, .actualites-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.unique-spectacle, .unique-actualite {
+    width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio));
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.unique-spectacle *, .unique-actualite * {
+    margin: 0 !important;
+}
+
+.spectacles-thumbnail-link {
+    position: relative;
+}
+
+.spectacles-thumbnail, .unique-actualite img {
+    width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio));
+    height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio) / var(--ratio));
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.les-essentiels-du-lyon {
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    top: -1em;
+    right: -1em;
+    
+}
+
+.unique-spectacle h2, .unique-spectacle h3, .unique-actualite h3 {
+    font-size: 1.5em !important;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .unique-spectacle, .unique-actualite {
+        width: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
+    }
+    .spectacles-thumbnail, .unique-actualite img {
+        width: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
+        height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio)) !important;
+    }
+}
+
+@media (max-width: 570px) {
+    .unique-spectacle, .unique-actualite {
+        width: var(--wp--custom--ast-container-width) !important;
+    }
+    .spectacles-thumbnail {
+        width: var(--wp--custom--ast-container-width) !important;
+        height: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
+    }
+}
+
+@media (max-width: 360px){
+    .unique-spectacle, .unique-actualite {
+        width: calc(100vw - 2em) !important;
+    }
+    .spectacles-thumbnail, .unique-actualite img {
+        width: calc(100vw - 2em) !important;
+        height: calc((100vw - 2em) / var(--ratio)) !important;
+    }
+}

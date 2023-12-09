@@ -3,9 +3,11 @@
 add_shortcode('spectacles', 'spectacles_shortcode');
 function spectacles_shortcode()
 {
-    ob_start(); ?>
+    ob_start();
+    global $post;
+    $post_id = $post->ID; ?>
 
-    <div class="spectacles-list">
+    <div class="spectacles-list alignfull">
 
         <?php $spectacle_posts = new WP_Query(
             [
@@ -37,7 +39,11 @@ function spectacles_shortcode()
                         endforeach; ?>
                     </a>
                     <hgroup>
-                        <h2 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
+                        <?php if (is_home($post_id)) : ?>
+                            <h3 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+                        <?php else : ?>
+                            <h2 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
+                        <?php endif; ?>
                         <p style="text-align: center;"><?php echo get_post_meta($id, 'subtitle', true); ?></p>
                     </hgroup>
 

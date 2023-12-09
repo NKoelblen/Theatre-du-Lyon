@@ -1,12 +1,15 @@
 .home .site-branding.ast-site-identity {
     display: none !important;
 }
-.home .ast-primary-header-bar {
-    background-color: transparent !important;
-}
 .home .site-content {
     margin-top: -80px !important;
 }
-.home .entry-content {
-    max-width: var(--wp--custom--ast-content-width-size) !important;    
+
+.home article {
+    gap: 0;
+}
+
+.home-logo {
+    width: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
+    height: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
 }

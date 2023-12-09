@@ -29,12 +29,11 @@ function enqueue_child_style()
 	wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'));
 	wp_enqueue_style('main-style', get_stylesheet_directory_uri() . '/assets/css/main.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/main.css'));
 	wp_enqueue_style('home-style', get_stylesheet_directory_uri() . '/assets/css/home.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/home.css'));
-	wp_enqueue_style('calendriers-style', get_stylesheet_directory_uri() . '/assets/css/calendriers.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/calendriers.css'));
-	wp_enqueue_style('spectacle-breadcrumb-style', get_stylesheet_directory_uri() . '/assets/css/spectacle-breadcrumb.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacle-breadcrumb.css'));
-	wp_enqueue_style('spectacles-style', get_stylesheet_directory_uri() . '/assets/css/spectacles.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/spectacles.css'));
+	wp_enqueue_style('list-spectacles-&-actualites-style', get_stylesheet_directory_uri() . '/assets/css/list-spectacles-actualites.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/list-spectacles-actualites.css'));
+	wp_enqueue_style('list-calendriers-style', get_stylesheet_directory_uri() . '/assets/css/list-calendriers.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/list-calendriers.css'));
+	wp_enqueue_style('single-spectacle-style', get_stylesheet_directory_uri() . '/assets/css/single-spectacle.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/single-spectacle.css'));
+	wp_enqueue_style('list-collaborateurs-style', get_stylesheet_directory_uri() . '/assets/css/list-collaborateurs.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/list-collaborateurs.css'));
 	wp_enqueue_style('espace-pro-style', get_stylesheet_directory_uri() . '/assets/css/espace-pro.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/espace-pro.css'));
-	wp_enqueue_style('collaborateurs-style', get_stylesheet_directory_uri() . '/assets/css/collaborateurs.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/collaborateurs.css'));
-	wp_enqueue_style('actualites-style', get_stylesheet_directory_uri() . '/assets/css/actualites.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/actualites.css'));
 	wp_enqueue_style('dashicons');
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_style', 15);
@@ -121,22 +120,8 @@ function no_autosave()
 }
 
 /**
- * French date : "Vendredi 1er Décembre 2023"
+ * Remove menus
  */
-function full_textual_date_fr($date)
-{
-	$mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
-	$jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-
-	return $jours[date("w", $date)] . " " . date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
-}
-
-function abr_textual_date_fr($date)
-{
-	$mois = ["Janv.", "Fevr.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Dec."];
-
-	return date("j", $date) . (date("j", $date) == 1 ? "er " : " ") . $mois[date("n", $date) - 1] . " " . date("Y", $date);
-}
 
 add_filter('admin_menu', 'remove_menus');
 function remove_menus()
@@ -144,6 +129,20 @@ function remove_menus()
 	remove_menu_page('edit-comments.php');
 	remove_submenu_page('admin.php?page=astra', 'admin.php?page=theme-builder-free');
 }
+
+/**
+ * Activate Alignfull & Alignwide
+ */
+
+function themeprefix_setup()
+{
+	add_theme_support('align-wide');
+}
+add_action('after_setup_theme', 'themeprefix_setup', 10, 2);
+
+/**
+ * Astra Breakpoints
+ */
 
 add_filter('astra_tablet_breakpoint', function () {
 	return 1920;
