@@ -25,7 +25,7 @@ function collaborateurs_shortcode()
                     <?php $collaborateur_posts->the_post();
                     $collaborateur_id = get_the_id(); ?>
 
-                    <img src="<?php echo get_the_post_thumbnail_url(); ?>">
+                    <img src="<?php echo get_the_post_thumbnail_url($collaborateur_id, 'large'); ?>">
                     <h3 style="text-align: center"><?php echo get_the_title(); ?></h3>
                     <p style="text-align: center"><strong><?php echo get_post_meta($collaborateur_id, 'fonction')[0]; ?></strong></p>
                     <div style="text-align: center"><?php echo wpautop(get_post_meta($collaborateur_id, "biographie", true)); ?></div>

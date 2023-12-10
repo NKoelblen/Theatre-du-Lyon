@@ -1,3 +1,4 @@
+/* Header */
 .home .site-branding.ast-site-identity {
     display: none !important;
 }
@@ -5,11 +6,32 @@
     margin-top: -80px !important;
 }
 
+/* Content */
 .home article {
     gap: 0;
 }
 
-.home-logo img {
-    width: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
-    height: calc(var(--wp--custom--ast-content-width-size) / var(--ratio)) !important;
+/* Logo */
+@media (min-aspect-ratio: 1/1) {
+    .home-logo img {
+        width: calc(100vh / var(--ratio)) !important;
+        height: calc(100vh / var(--ratio)) !important;
+    }
+}
+@media (max-aspect-ratio: 1/1) {
+    .home-logo img {
+        width: calc(var(--wp--custom--ast-content-width-size)) !important;
+        height: calc(var(--wp--custom--ast-content-width-size)) !important;
+    }
+}
+@media (max-width: 360px){
+    .home-logo img {
+        width: calc(100vw - 2em) !important;
+        height: calc(100vw - 2em) !important;
+    }
+}
+
+/* Slogan */
+.accueil-slogan {
+    font-size: clamp(1.5em, 3.88vw, 2em) !important;
 }

@@ -55,7 +55,7 @@ function dossiers_pro_shortcode()
                         <?php $spectacle_posts->the_post();
                         $spectacle_id = get_the_id(); ?>
 
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="spectacles-thumbnail">
+                        <img src="<?php echo get_the_post_thumbnail_url($spectacle_id, 'medium_large'); ?>" class="spectacles-thumbnail">
                         <h3 style="text-align: center"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
 
                         <?php $spectacle_attachments = get_children(

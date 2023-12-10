@@ -7,13 +7,19 @@ function actualites_shortcode()
 
     <div class="actualites-list alignfull">
 
-        <?php $actualite_posts = new WP_Query(
+        <?php
+        if (is_home()) :
+            $post_per_page = 3;
+        else :
+            $post_per_page = -1;
+        endif;
+        $actualite_posts = new WP_Query(
             [
                 'post_type'         => 'post',
                 'post_status'       => 'publish',
                 'order'             => 'DSC',
                 'orderby'           => 'date',
-                'posts_per_page'    => 3
+                'posts_per_page'    => $post_per_page
             ]
         );
 
@@ -27,7 +33,7 @@ function actualites_shortcode()
                 <div class="unique-actualite">
 
                     <a href="<?php echo get_the_permalink(); ?>" class="actualites-thumbnail-link">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="actualites-thumbnail">
+                        <img src="<?php echo get_the_post_thumbnail_url($id, 'large'); ?>" class="actualites-thumbnail">
                     </a>
                     <h3 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
 

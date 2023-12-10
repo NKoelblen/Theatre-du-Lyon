@@ -29,7 +29,7 @@ function spectacles_shortcode()
                 <div class="unique-spectacle">
 
                     <a href="<?php echo get_the_permalink(); ?>" class="spectacles-thumbnail-link">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="spectacles-thumbnail">
+                        <img src="<?php echo get_the_post_thumbnail_url($id, 'medium_large'); ?>" class="spectacles-thumbnail">
 
                         <?php foreach ($categories as $categorie) :
                             $categorie_name = $categorie->cat_name;

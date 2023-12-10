@@ -26,7 +26,7 @@ function spectacles_essentiels_shortcode()
 
                 <div class="unique-spectacle">
 
-                    <a href="<?php echo get_the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" class="spectacles-thumbnail"></a>
+                    <a href="<?php echo get_the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url($id, 'medium_large'); ?>" class="spectacles-thumbnail"></a>
 
                     <hgroup>
                         <h2 style="text-align: center;"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>

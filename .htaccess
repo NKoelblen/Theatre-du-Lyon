@@ -1,5 +1,5 @@
 # BEGIN WpFastestCache
-# Modified Time: 01-12-23 10:31:56
+# Modified Time: 10-12-23 9:22:23
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -36,6 +36,8 @@ Header set Expires "Mon, 29 Oct 1923 20:30:00 GMT"
 </ifModule>
 </FilesMatch>
 # END WpFastestCache
+
+
 # BEGIN LBCWpFastestCache
 <FilesMatch "\.(webm|ogg|mp4|ico|pdf|flv|avif|jpg|jpeg|png|gif|webp|js|css|swf|x-html|css|xml|js|woff|woff2|otf|ttf|svg|eot)(\.gz)?$">
 <IfModule mod_expires.c>

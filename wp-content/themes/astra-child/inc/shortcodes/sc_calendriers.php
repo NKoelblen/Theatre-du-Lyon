@@ -34,7 +34,7 @@ function calendriers_shortcode(): string|bool
                     while ($spectacle_posts->have_posts()) :
                         $spectacle_posts->the_post(); ?>
                         <div class="calendrier-thumbnail">
-                            <a href="<?php echo get_the_permalink(); ?>" style="background-image: url(<?php echo get_the_post_thumbnail_url($c_spectacle_id); ?>);"> </a>
+                            <a href="<?php echo get_the_permalink(); ?>" style="background-image: url(<?php echo get_the_post_thumbnail_url($c_spectacle_id, 'medium_large'); ?>);"> </a>
                         </div>
                         <h2 class="has-text-align-center"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
 
