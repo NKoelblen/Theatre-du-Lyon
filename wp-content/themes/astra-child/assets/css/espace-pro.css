@@ -1,0 +1,19 @@
+#post-22 section {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+}
+
+#post-22 p a {
+    color: var(--ast-global-color-1) !important;
+}
+
+#post-22 p a:hover {
+    color: var(--ast-global-color-0) !important;
+}
+
+@media (max-width: 520px) {
+    #post-22 section {
+        gap: 2em;
+    } 
+}

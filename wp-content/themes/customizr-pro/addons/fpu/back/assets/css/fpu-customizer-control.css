@@ -1,0 +1,209 @@
+#sub-accordion-section-tc_fpu,
+#accordion-section-tc_fpu > ul.accordion-section-content {
+	min-height: 146px;
+}
+
+/*#accordion-section-tc_fpu > ul > li:nth-child(2) {
+	margin-top: 0px;
+}
+*/
+[id*="accordion-section-tc_fpu"] .customize-control {
+	margin-bottom: 10px;
+}
+
+.tc-notice {
+	float: left;
+}
+.tc-check-label {
+	float: left;
+	width: 85%;
+}
+[id*="accordion-section-tc_fpu"] .fpc-section-title {
+	/*font-family: "lobster two" ,"sans-serif";*/
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 21px;
+	line-height: 23px;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	padding: 8px;
+	color: #000;
+	font-weight: normal
+}
+
+/*.control-section .accordion-section-title {
+	padding: 6px 20px!important;
+}*/
+/*.control-section .accordion-section-title:after {
+	top: 7px;
+}*/
+/*#customize-theme-controls h3.accordion-section-title {
+	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+}*/
+
+/*#customize-theme-controls .control-section:hover .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:hover::after, #customize-theme-controls .control-section.open .accordion-section-title::after, #customize-theme-controls .control-section .accordion-section-title:focus::after {
+	color: #FFF;
+}*/
+.customize-control-checkbox label {
+	line-height: 16px;
+}
+.customize-control-title {
+	color: #2E2E2E;
+}
+.tc-customizr-title {
+	color: #21759B;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 #FFF;
+	margin: 1em 0em 0em 0em;
+	font-size: 15px!important;
+}
+.tc-after-button {
+	border-color: white;
+	margin-top:15px;
+}
+.tc-emphasize {
+	line-height: 1.2em;
+	color: #2E2E2E;
+}
+i.tc-notice {
+	display: block;
+	clear: both;
+}
+span.tc-notice {
+	color: #999;
+	font-size:12px;
+	font-style: italic;
+	clear: both;
+	display: block;
+}
+.tc-customizer-separator-invisible {
+	border:none;
+	margin-top:15px;
+}
+.tc-skin-gen-label {
+	float: left;
+}
+.tc-skin-gen-color-picker {
+	float: right;
+}
+.tc-number-label {
+	float: left;
+}
+.tc-number-input {
+	float: right;
+}
+.tc-check-label {
+	float: left;
+	max-width: 85%;
+}
+input.iphonecheck {
+	float: right;
+	min-height: 18px;
+}
+.tc-font-select {
+	float: left;
+}
+
+/*
+* Fix: wp 4.7 sticky section title and footer actions z-index
+*/
+.expanded .wp-full-overlay-footer,
+#customize-controls .customize-section-title.is-in-view.is-sticky {
+  z-index: 999;
+}
+
+/* Nimblecheck style, introduced in april 2019 */
+/* ALIGNEMENT IN REGULAR CONTROLS */
+.czr-control-nimblecheck {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 100%;
+}
+
+
+/* COMMON RULES TO MODULES AND CONTROLS */
+.nimblecheck-wrap {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+.nimblecheck-wrap .nimblecheck-input:focus + label {
+  box-shadow: 0 0 0 1px #33b3db;
+}
+/* Hide the checkbox input (only needed for `:checked` property) */
+.nimblecheck-wrap .nimblecheck-input {
+  /* display: none; <= May 2021 : display none breaks accessibility*/
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* Switch */
+.nimblecheck-wrap .nimblecheck-label {
+  display: block;
+  width: 35px;
+  height: 20px;
+  text-indent: -150%;
+  clip: rect(0 0 0 0);
+  color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* Switch Rail & Knob */
+  /* Switch Rail */
+  /* Switch Knob */
+}
+.nimblecheck-wrap .nimblecheck-label:before,
+.nimblecheck-wrap .nimblecheck-label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.nimblecheck-wrap .nimblecheck-label:before {
+  width: 100%;
+  height: 100%;
+  background-color: #999;
+  border-radius: 9999em;
+  -webkit-transition: background-color 0.35s ease;
+  -o-transition: background-color 0.35s ease;
+  transition: background-color 0.35s ease;
+}
+.nimblecheck-wrap .nimblecheck-label:after {
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  -webkit-transition: left 0.15s ease;
+  -o-transition: left 0.15s ease;
+  transition: left 0.15s ease;
+}
+/* When input is checked */
+.nimblecheck-wrap .nimblecheck-input:checked + .nimblecheck-label {
+  /* Switch Rail */
+  /* Switch Knob */
+}
+.nimblecheck-wrap .nimblecheck-input:checked + .nimblecheck-label:before {
+  background-color: #33b3db;
+}
+.nimblecheck-wrap .nimblecheck-input:checked + .nimblecheck-label:after {
+  left: 16px
+}
