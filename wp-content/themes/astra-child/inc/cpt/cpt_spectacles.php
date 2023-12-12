@@ -1,40 +1,40 @@
 <?php
-/* Register Spectacles Custom Post Type */
-add_action('init', 'spectacles_post_type', 0);
-function spectacles_post_type()
+/* Register Custom Post Type Spectacle */
+add_action('init', 'spectacle_post_type', 0);
+function spectacle_post_type()
 {
-    $labels = array(
-        'name'                  => _x('Spectacles', 'Post Type General Name', 'text_domain'),
-        'singular_name'         => _x('Spectacle', 'Post Type Singular Name', 'text_domain'),
-        'menu_name'             => __('Spectacles', 'text_domain'),
-        'name_admin_bar'        => __('Spectacle', 'text_domain'),
-        'archives'              => __('Archives du Spectacle', 'text_domain'),
-        'attributes'            => __('Attributs du Spectacle', 'text_domain'),
-        'parent_item_colon'     => __('Parent du Spectacle :', 'text_domain'),
-        'all_items'             => __('Tous les Spectacles', 'text_domain'),
-        'add_new_item'          => __('Ajouter un nouveau Spectacle', 'text_domain'),
-        'add_new'               => __('Nouveau Spectacle', 'text_domain'),
-        'new_item'              => __('Nouveau Spectacle', 'text_domain'),
-        'edit_item'             => __('Modifier le Spectacle', 'text_domain'),
-        'update_item'           => __('Mettre à jour le Spectacle', 'text_domain'),
-        'view_item'             => __('Voir le Spectacle', 'text_domain'),
-        'view_items'            => __('Voir les Spectacles', 'text_domain'),
-        'search_items'          => __('Chercher des Spectacles', 'text_domain'),
-        'not_found'             => __('Aucun Spectacle trouvé', 'text_domain'),
-        'not_found_in_trash'    => __('Aucun Spectacle trouvé dans la corbeille', 'text_domain'),
-        'featured_image'        => __('Image mise en avant', 'text_domain'),
-        'set_featured_image'    => __('Définir l\'image mise en avant', 'text_domain'),
-        'remove_featured_image' => __('Supprimer l\'image mise en avant', 'text_domain'),
-        'use_featured_image'    => __('Utiliser comme image mise en avant', 'text_domain'),
-        'insert_into_item'      => __('Insérer dans ce Spectacle', 'text_domain'),
-        'uploaded_to_this_item' => __('Télécharger dans ce Spectacle', 'text_domain'),
-        'items_list'            => __('Liste des Spectacles', 'text_domain'),
-        'items_list_navigation' => __('Navigation dans la liste des Spectacles', 'text_domain'),
-        'filter_items_list'     => __('Filtrer la liste des Spectacles', 'text_domain'),
-    );
-    $args = array(
-        'label'                 => __('Spectacle', 'text_domain'),
-        'description'           => __('Spectacles', 'text_domain'),
+    $labels = [
+        'name'                  => _x('Spectacles', 'Post Type General Name', 'astra-child'),
+        'singular_name'         => _x('Spectacle', 'Post Type Singular Name', 'astra-child'),
+        'menu_name'             => __('Spectacles', 'astra-child'),
+        'name_admin_bar'        => __('Spectacle', 'astra-child'),
+        'archives'              => __('Archives du Spectacle', 'astra-child'),
+        'attributes'            => __('Attributs du Spectacle', 'astra-child'),
+        'parent_item_colon'     => __('Parent du Spectacle :', 'astra-child'),
+        'all_items'             => __('Tous les Spectacles', 'astra-child'),
+        'add_new_item'          => __('Ajouter un nouveau Spectacle', 'astra-child'),
+        'add_new'               => __('Nouveau Spectacle', 'astra-child'),
+        'new_item'              => __('Nouveau Spectacle', 'astra-child'),
+        'edit_item'             => __('Modifier le Spectacle', 'astra-child'),
+        'update_item'           => __('Mettre à jour le Spectacle', 'astra-child'),
+        'view_item'             => __('Voir le Spectacle', 'astra-child'),
+        'view_items'            => __('Voir les Spectacles', 'astra-child'),
+        'search_items'          => __('Chercher des Spectacles', 'astra-child'),
+        'not_found'             => __('Aucun Spectacle trouvé', 'astra-child'),
+        'not_found_in_trash'    => __('Aucun Spectacle trouvé dans la corbeille', 'astra-child'),
+        'featured_image'        => __('Image mise en avant', 'astra-child'),
+        'set_featured_image'    => __('Définir l\'image mise en avant', 'astra-child'),
+        'remove_featured_image' => __('Supprimer l\'image mise en avant', 'astra-child'),
+        'use_featured_image'    => __('Utiliser comme image mise en avant', 'astra-child'),
+        'insert_into_item'      => __('Insérer dans ce Spectacle', 'astra-child'),
+        'uploaded_to_this_item' => __('Télécharger dans ce Spectacle', 'astra-child'),
+        'items_list'            => __('Liste des Spectacles', 'astra-child'),
+        'items_list_navigation' => __('Navigation dans la liste des Spectacles', 'astra-child'),
+        'filter_items_list'     => __('Filtrer la liste des Spectacles', 'astra-child'),
+    ];
+    $args = [
+        'label'                 => __('Spectacle', 'astra-child'),
+        'description'           => __('Spectacles', 'astra-child'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail', 'excerpt'),
         'taxonomies'            => array('category'),
@@ -51,6 +51,6 @@ function spectacles_post_type()
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
-    );
+    ];
     register_post_type('spectacle', $args);
 }

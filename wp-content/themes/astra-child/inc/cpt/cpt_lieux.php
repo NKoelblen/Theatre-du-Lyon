@@ -1,40 +1,40 @@
 <?php
-/* Register Lieux Custom Post Type */
-add_action('init', 'lieux_post_type', 0);
-function lieux_post_type()
+/* Register Custom Post Type Lieu */
+add_action('init', 'lieu_post_type', 0);
+function lieu_post_type()
 {
-    $labels = array(
-        'name'                  => _x('Lieux', 'Post Type General Name', 'text_domain'),
-        'singular_name'         => _x('Lieu', 'Post Type Singular Name', 'text_domain'),
-        'menu_name'             => __('Lieux', 'text_domain'),
-        'name_admin_bar'        => __('Lieu', 'text_domain'),
-        'archives'              => __('Archives du Lieu', 'text_domain'),
-        'attributes'            => __('Attributs du Lieu', 'text_domain'),
-        'parent_item_colon'     => __('Parent du Lieu :', 'text_domain'),
-        'all_items'             => __('Tous les Lieux', 'text_domain'),
-        'add_new_item'          => __('Ajouter un nouveau Lieu', 'text_domain'),
-        'add_new'               => __('Nouveau Lieu', 'text_domain'),
-        'new_item'              => __('Nouveau Lieu', 'text_domain'),
-        'edit_item'             => __('Modifier le Lieu', 'text_domain'),
-        'update_item'           => __('Mettre à jour le Lieu', 'text_domain'),
-        'view_item'             => __('Voir le Lieu', 'text_domain'),
-        'view_items'            => __('Voir les Lieux', 'text_domain'),
-        'search_items'          => __('Chercher des Lieux', 'text_domain'),
-        'not_found'             => __('Aucun Lieu trouvé', 'text_domain'),
-        'not_found_in_trash'    => __('Aucun Lieu trouvé dans la corbeille', 'text_domain'),
-        'featured_image'        => __('Image mise en avant', 'text_domain'),
-        'set_featured_image'    => __('Définir l\'image mise en avant', 'text_domain'),
-        'remove_featured_image' => __('Supprimer l\'image mise en avant', 'text_domain'),
-        'use_featured_image'    => __('Utiliser comme image mise en avant', 'text_domain'),
-        'insert_into_item'      => __('Insérer dans ce Lieu', 'text_domain'),
-        'uploaded_to_this_item' => __('Télécharger dans ce Lieu', 'text_domain'),
-        'items_list'            => __('Liste des Lieux', 'text_domain'),
-        'items_list_navigation' => __('Navigation dans la liste des Lieux', 'text_domain'),
-        'filter_items_list'     => __('Filtrer la liste des Lieux', 'text_domain'),
-    );
-    $args = array(
-        'label'                 => __('Lieu', 'text_domain'),
-        'description'           => __('Lieux', 'text_domain'),
+    $labels = [
+        'name'                  => _x('Lieux', 'Post Type General Name', 'astra-child'),
+        'singular_name'         => _x('Lieu', 'Post Type Singular Name', 'astra-child'),
+        'menu_name'             => __('Lieux', 'astra-child'),
+        'name_admin_bar'        => __('Lieu', 'astra-child'),
+        'archives'              => __('Archives du Lieu', 'astra-child'),
+        'attributes'            => __('Attributs du Lieu', 'astra-child'),
+        'parent_item_colon'     => __('Parent du Lieu :', 'astra-child'),
+        'all_items'             => __('Tous les Lieux', 'astra-child'),
+        'add_new_item'          => __('Ajouter un nouveau Lieu', 'astra-child'),
+        'add_new'               => __('Nouveau Lieu', 'astra-child'),
+        'new_item'              => __('Nouveau Lieu', 'astra-child'),
+        'edit_item'             => __('Modifier le Lieu', 'astra-child'),
+        'update_item'           => __('Mettre à jour le Lieu', 'astra-child'),
+        'view_item'             => __('Voir le Lieu', 'astra-child'),
+        'view_items'            => __('Voir les Lieux', 'astra-child'),
+        'search_items'          => __('Chercher des Lieux', 'astra-child'),
+        'not_found'             => __('Aucun Lieu trouvé', 'astra-child'),
+        'not_found_in_trash'    => __('Aucun Lieu trouvé dans la corbeille', 'astra-child'),
+        'featured_image'        => __('Image mise en avant', 'astra-child'),
+        'set_featured_image'    => __('Définir l\'image mise en avant', 'astra-child'),
+        'remove_featured_image' => __('Supprimer l\'image mise en avant', 'astra-child'),
+        'use_featured_image'    => __('Utiliser comme image mise en avant', 'astra-child'),
+        'insert_into_item'      => __('Insérer dans ce Lieu', 'astra-child'),
+        'uploaded_to_this_item' => __('Télécharger dans ce Lieu', 'astra-child'),
+        'items_list'            => __('Liste des Lieux', 'astra-child'),
+        'items_list_navigation' => __('Navigation dans la liste des Lieux', 'astra-child'),
+        'filter_items_list'     => __('Filtrer la liste des Lieux', 'astra-child'),
+    ];
+    $args = [
+        'label'                 => __('Lieu', 'astra-child'),
+        'description'           => __('Lieux', 'astra-child'),
         'labels'                => $labels,
         'supports'              => array('title'),
         'taxonomies'            => array(),
@@ -50,6 +50,6 @@ function lieux_post_type()
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
-    );
+    ];
     register_post_type('lieu', $args);
 }

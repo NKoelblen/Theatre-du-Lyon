@@ -1,7 +1,9 @@
 <?php
 
+/* Used in each spectacle to display title & subtitle in header slide */
+
 add_shortcode('spectacle-hgroup', 'spectacle_hgroup_shortcode');
-function spectacle_hgroup_shortcode()
+function spectacle_hgroup_shortcode(): string|bool
 {
     ob_start();
 
@@ -12,8 +14,10 @@ function spectacle_hgroup_shortcode()
     if ($post->post_type === 'spectacle') : ?>
 
         <hgroup class="spectacle-hgroup alignfull">
-            <h1 style="text-align: center;"><?php echo get_the_title(); ?></h1>
-            <p style="text-align: center;"><?php echo get_post_meta($post_id, 'subtitle', true); ?></p>
+
+            <h1><?php echo get_the_title(); ?></h1>
+            <p><?php echo get_post_meta($post_id, 'subtitle', true); ?></p>
+
         </hgroup>
 
 <?php endif;

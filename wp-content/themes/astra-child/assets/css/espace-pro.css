@@ -4,6 +4,10 @@
     gap: 4em;
 }
 
+#post-22 section.compagnie {
+    gap: 2em;
+}
+
 #post-22 p a {
     color: var(--ast-global-color-1) !important;
 }
@@ -12,8 +16,13 @@
     color: var(--ast-global-color-0) !important;
 }
 
+/* Responsive */
+
 @media (max-width: 520px) {
     #post-22 section {
         gap: 2em;
+    }
+    #post-22 section.compagnie {
+        gap: 1em;
     } 
 }

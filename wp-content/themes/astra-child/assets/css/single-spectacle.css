@@ -66,8 +66,8 @@
     width: var(--wp--custom--ast-content-width-size) !important;
 }
 
-/* Breadcrumb */
-.spectacle-breadcrumb {
+/* Summary */
+.astc_spectacle-summary {
     position: sticky;
     top: 0;
     display: flex;
@@ -79,16 +79,16 @@
     background-color: white;
     z-index: 10;
 }
-.spectacle-breadcrumb-link {
+.astc_spectacle-summary-link {
     color: var(--ast-global-color-1);
 }
-.spectacle-breadcrumb-link:hover {
+.astc_spectacle-summary-link:hover {
     color: var(--ast-global-color-0);
 }
-.spectacle-breadcrumb-current {
+.astc_current {
     color: var(--ast-global-color-0) !important;
 }
-.scroll-margin-top {
+.astc_scroll-margin-top {
     scroll-margin-top: 4em;
 }
 
@@ -127,8 +127,9 @@
 }
 
 /* Responsive */
+
 @media (max-width: 600px) {
-    .spectacle-breadcrumb {
+    .astc_spectacle-summary {
         display: none;
     }
 }

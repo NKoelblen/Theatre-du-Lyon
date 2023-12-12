@@ -1,9 +1,11 @@
 <?php
+/* Calendrier Metabox */
+
 if (class_exists('MetaboxGenerator')) {
-    $mb_calendrier = new MetaboxGenerator;
+    $mb_calendrier = new MetaboxGenerator; // ./Defined in mb_generator
 };
 
-// Calendrier Metabox
+/* Options for select spectacle field */
 
 $spectacle_posts = new WP_Query(
     [
@@ -12,17 +14,19 @@ $spectacle_posts = new WP_Query(
     ]
 );
 $spectacles = [];
-if ($spectacle_posts->have_posts()) {
-    while ($spectacle_posts->have_posts()) {
+if ($spectacle_posts->have_posts()) :
+    while ($spectacle_posts->have_posts()) :
         $spectacle_posts->the_post();
         $spectacles[] =
             [
                 'id'    => get_the_ID(),
                 'title' => get_the_title()
             ];
-    }
-}
+    endwhile;
+endif;
 wp_reset_postdata();
+
+/* Options for select lieu field */
 
 $lieu_posts = new WP_Query(
     [
@@ -31,35 +35,42 @@ $lieu_posts = new WP_Query(
     ]
 );
 $lieux = [];
-if ($lieu_posts->have_posts()) {
-    while ($lieu_posts->have_posts()) {
+if ($lieu_posts->have_posts()) :
+    while ($lieu_posts->have_posts()) :
         $lieu_posts->the_post();
         $lieux[] =
             [
                 'id'    => get_the_ID(),
                 'title' => get_the_title()
             ];
-    }
-}
+    endwhile;
+endif;
 wp_reset_postdata();
 
+/**
+ *** How tu use : ***
+ * method set_screens($post_types) ; method set_fields($groups_of_fields)
+ * Refer to ./mb_generator comments
+ */
+
 $mb_calendrier->set_screens(['calendrier']);
+
 $mb_calendrier->set_fields(
     [
         [
-            'group_label' => '',
+            'group_label' => '', // Required, can be empty
             [
                 'label'             => 'Spectacle',
                 'id'                => 'spectacle',
                 'type'              => 'select',
                 'options'           => $spectacles
-            ], // spectacle
+            ], // end of spectacle
             [
                 'label'             => 'Lieu',
                 'id'                => 'lieu',
                 'type'              => 'select',
                 'options'           => $lieux
-            ], // lieu
+            ], // end of lieu
             [
                 'id'                => 'time',
                 'repeatable'        => true,
@@ -68,19 +79,19 @@ $mb_calendrier->set_fields(
                         'label'     => 'Date',
                         'id'        => 'date',
                         'type'      => 'date'
-                    ], // date
+                    ], // end of date
                     [
                         'label'     => 'Heure',
                         'id'        => 'heure',
                         'type'      => 'time'
-                    ], // heure
+                    ], // end of heure
                     [
                         'label'     => 'Public',
                         'id'        => 'public',
                         'type'      => 'text'
-                    ], // public    
-                ] // repeatable-fields
-            ] // time
-        ] // group
-    ] // fields
+                    ], // end of public    
+                ] // end of repeatable-fields
+            ] // end of time
+        ] // end of group
+    ] // end of fields
 );

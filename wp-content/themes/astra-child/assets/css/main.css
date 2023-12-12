@@ -17,6 +17,9 @@ html body {
 body {
     font-size: 16.18px;
 }
+p, h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
 h1, h2, h3, h4, h5, h6 {
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -39,7 +42,7 @@ h5 {
 h6 {
     font-size: 1em !important;
 }
-.gold {
+.marked {
     color: var(--ast-global-color-0);
 }
 
@@ -54,6 +57,11 @@ h6 {
 /* Site Header */
 .main-header-bar {
     background-color: transparent !important;
+}
+div.site-branding.ast-site-identity {
+    flex-shrink: unset !important;
+    flex-grow: unset !important;
+    text-wrap: nowrap;
 }
 
 /* Content */
@@ -88,8 +96,18 @@ article, .entry-content {
     width: calc(100vw - var(--wp--custom--ast-container-width)) !important;
     max-width: unset !important;
 }
+a.menu-link {
+    border-color: unset !important;
+    padding: unset !important;
+}
 .ast-mobile-popup-content {
-    padding-bottom: 2em;
+    display: flex !important;
+    flex-direction: column;
+    padding: 0 1em 2em 1em !important;
+    gap: 2em;
+}
+.ast-mobile-popup-content > * {
+    padding: 0 !important;
 }
 .ast-mobile-popup-content h2 {
     font-size: 1.5em !important;
@@ -196,19 +214,4 @@ img[style*="aspect-ratio:9/16"], img[style*="aspect-ratio:3/4"], img[style*="asp
     *[style*="font-size:32px"], *[style*="font-size:32.36px"], *[style*="font-size:2em"] {
         font-size: 1.5em !important;
     }
-}
-
-div.site-branding.ast-site-identity {
-    flex-shrink: unset !important;
-    flex-grow: unset !important;
-    text-wrap: nowrap;
-}
-
-.ast-mobile-popup-content {
-    padding: 0 1em !important;
-}
-
-a.menu-link {
-    border-color: unset !important;
-    padding: unset !important;
 }

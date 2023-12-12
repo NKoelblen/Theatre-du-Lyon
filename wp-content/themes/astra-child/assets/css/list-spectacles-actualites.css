@@ -1,11 +1,11 @@
-.spectacles-list, .actualites-list {
+.astc_posts-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 2em;
 }
 
-.unique-spectacle, .unique-actualite {
+.astc_each-post {
     width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio));
     margin: 0 !important;
     display: flex;
@@ -14,60 +14,64 @@
     gap: 1em;
 }
 
-.unique-spectacle *, .unique-actualite * {
+.astc_each-post * {
     margin: 0 !important;
 }
 
-.spectacles-thumbnail-link {
+.astc_each-post-thumbnail-link {
     position: relative;
 }
 
-.spectacles-thumbnail, .unique-actualite img {
+.astc_each-post-thumbnail {
     width: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio)) !important;
     height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio) / var(--ratio)) !important;
     object-fit: cover;
     object-position: 50% 50%;
 }
 
-.les-essentiels-du-lyon {
+.astc_les-essentiels-du-lyon {
     width: 4em !important;
     height: 4em !important;
     position: absolute;
     top: -1em;
-    right: -1em;
-    
+    right: -1em;    
 }
 
-.unique-spectacle h2, .unique-spectacle h3, .unique-actualite h3 {
+.astc_each-post h2, .astc_each-post h3 {
     font-size: 1.5em !important;
 }
 
+.astc_each-post-read-more {
+    margin-top: auto !important;
+}
+
 /* Responsive */
+
 @media (max-width: 960px) {
-    .unique-spectacle, .unique-actualite {
+    .astc_each-post {
         width: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
     }
-    .spectacles-thumbnail, .unique-actualite img {
+    .astc_each-post-thumbnail {
         width: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
         height: calc(var(--wp--custom--ast-container-width) / var(--ratio) / var(--ratio)) !important;
     }
 }
 
 @media (max-width: 570px) {
-    .unique-spectacle, .unique-actualite {
+    .astc_each-post {
         width: var(--wp--custom--ast-container-width) !important;
     }
-    .spectacles-thumbnail {
+    .astc_each-post-thumbnail {
         width: var(--wp--custom--ast-container-width) !important;
         height: calc(var(--wp--custom--ast-container-width) / var(--ratio)) !important;
     }
 }
 
 @media (max-width: 360px){
-    .unique-spectacle, .unique-actualite {
+    .astc_each-post {
         width: calc(100vw - 2em) !important;
     }
-    .spectacles-thumbnail, .unique-actualite img {
+    .astc_each-post-thumbnail {
         width: calc(100vw - 2em) !important;
         height: calc((100vw - 2em) / var(--ratio)) !important;
     }

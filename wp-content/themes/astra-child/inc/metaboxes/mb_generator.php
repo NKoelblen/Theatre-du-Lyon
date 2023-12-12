@@ -1,7 +1,12 @@
 <?php
 
-// How to use: $meta_value = get_post_meta( $post_id, $field_id, true );
-// Example: get_post_meta( get_the_ID(), "my_metabox_field", true );
+/**
+ * Metabox Generator, used by :
+ * mb_calendrier
+ * mb_collaborateur
+ * mb_lieu
+ * mb_spectacle
+ */
 
 
 class MetaboxGenerator
@@ -14,17 +19,22 @@ class MetaboxGenerator
     } // End of __construct
 
 
-    // Post-types
+    /* Post-types where the metabox will be generate */
 
     private $screens;
 
+    /**
+     *** How to use : ***
+     * method set_screens($post_types) :
+     *   $post_types = array of post-types
+     */
     public function set_screens($new_screens)
     {
         $this->screens = $new_screens;
     } // End of set_screens
 
 
-    // Metabox
+    /* Add Metabox to Post-types */
 
     public function add()
     {
@@ -37,7 +47,7 @@ class MetaboxGenerator
                 'normal',
                 'default'
             );
-        endforeach;
+        endforeach; // Endforeach screen
     } // End of add
 
     public function callback($post)
@@ -47,10 +57,35 @@ class MetaboxGenerator
     } // End of callback
 
 
-    // Form fields
+    /* Form fields */
 
     private $fields;
 
+    /**
+     *** How tu use : ***
+     * method set_fields($groups_of_fields) :
+     *   $groups_of_fields = array of arrays for each $group_of_fields
+     *       each $group_of_fields = array
+     *           beggin with 'group_label' => string (required, can be empty)
+     *           continue with arrays for each $field
+     *               each $field = array of $arguments used to generate the field in mb_generator
+     *                   $arguments :
+     *                       'label' => string
+     *                       'id' => string
+     *                       'type' => string (text | select | date | time | url | WYSIWYG)
+     *                       'options' => array of $options (required for 'type' => 'select')
+     *                           $options = array of arrays for each $option
+     *                               each $option = ['value' => string, 'label' => string]
+     *                       'width' => string (width of the label and the field)
+     *                       'repeatable' => bool
+     *                       'repeatable-fields' => array of $repeatable_fields 
+     *                           $repeatable fields = array of arrays for each $repeatable field
+     *                               each $repeatable_field = array of $arguments
+     *                                   $arguments :
+     *                                       'label' => string
+     *                                       'id' => string
+     *                                       'type' => string (text | date | time)
+     */
     public function set_fields($new_fields)
     {
         $this->fields = $new_fields;
@@ -59,61 +94,59 @@ class MetaboxGenerator
     public function field_generator($post)
     {
 
-        foreach ($this->fields as $fields_group) : ?>
+        foreach ($this->fields as $group_of_fields) : ?>
 
             <!-- Form groups -->
 
             <fieldset style="margin-top: 10px; margin-bottom: 10px;">
-                <?php if (!empty($fields_group['group_label'])) : ?>
+                <?php if ($group_of_fields['group_label']) : ?>
                     <legend>
-                        <h3><?php echo $fields_group['group_label'] ?></h3>
+                        <h3><?= $group_of_fields['group_label'] ?></h3>
                     </legend>
-                <?php endif;
-                array_shift($fields_group);
+                <?php endif; // Endif group_label
+                array_shift($group_of_fields);
 
-                // Fields
+                /* Fields */
 
-                foreach ($fields_group as $group_field) :
+                foreach ($group_of_fields as $field) :
 
-                    if (isset($group_field['width'])) :
-                        $width = $group_field['width'];
+                    if (isset($field['width'])) :
+                        $width = $field['width'];
                     else :
                         $width = "100%";
                     endif; // Endif width
 
-                    // Meta data
-                    $meta_value = get_post_meta($post->ID, $group_field['id'], true);
-                    if (empty($meta_value) && isset($group_field['default'])) :
-                        $meta_value = $group_field['default'];
-                    endif; // Endif Default
-                ?>
+                    /* Registered Meta values */
+                    $meta_value = get_post_meta($post->ID, $field['id'], true); ?>
 
                     <!-- Label + Field box -->
-                    <div style="display: inline-block; width: <?php echo $width ?>">
+                    <div style="display: inline-block; width: <?= $width ?>">
 
                         <!-- Label -->
-                        <?php if (isset($group_field['label']) && $group_field['label'] != "") : ?>
-                            <div style="margin-left: 5px; margin-right: 5px;"><label for="<?php echo $group_field['id'] ?>"><strong><?php echo $group_field['label'] ?></strong></label></div>
-                        <?php endif; ?>
+                        <?php if (isset($field['label']) && $field['label'] !== "") : ?>
+                            <div style="margin-left: 5px; margin-right: 5px;"><label for="<?= $field['id'] ?>"><strong><?= $field['label'] ?></strong></label></div>
+                        <?php endif; // Endif label 
+                        ?>
 
                         <!-- Field box -->
                         <div style="margin-left: 5px; margin-right: 5px;">
 
                             <!-- Repeatable Fields -->
-                            <?php if (isset($group_field['repeatable']) && $group_field['repeatable'] === true) : ?>
-                                <table class="item-table">
+                            <?php if (isset($field['repeatable']) && $field['repeatable'] === true) : ?>
+                                <table class="items-table">
                                     <tbody>
                                         <tr>
-                                            <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
-                                                <th><?php echo $repeatable_field['label']; ?></th>
-                                            <?php endforeach; ?>
+                                            <?php foreach ($field['repeatable-fields'] as $repeatable_field) : ?>
+                                                <th><?= $repeatable_field['label']; ?></th>
+                                            <?php endforeach; // Endforeach repeatable_field 
+                                            ?>
                                         </tr>
                                         <?php if ($meta_value) :
                                             array_multisort(array_column($meta_value, 'public'), SORT_ASC, array_column($meta_value, 'date'), SORT_ASC, array_column($meta_value, 'heure'), SORT_ASC, $meta_value);
                                             $meta_value_type = [];
-                                            foreach ($group_field['repeatable-fields'] as $repeatable_field) :
+                                            foreach ($field['repeatable-fields'] as $repeatable_field) :
                                                 $meta_value_type[] = $repeatable_field['type'];
-                                            endforeach; // Endforach repeatable_field
+                                            endforeach; // Endforeach repeatable_field
                                             $meta_values = [];
                                             foreach ($meta_value as $item_values) :
                                                 $values = [];
@@ -123,36 +156,33 @@ class MetaboxGenerator
                                                 $values_and_type = [];
                                                 foreach ($values as $key => $value) :
                                                     $values_and_type[] = $value + ['type' => $meta_value_type[$key]];
-                                                endforeach; // Enforeach value
+                                                endforeach; // Endforeach value
                                                 $meta_values[] = $values_and_type;
                                             endforeach; // Endforeach item_values
                                         ?>
                                             <?php foreach ($meta_values as $item_key => $item_values) : ?>
                                                 <tr class="sub-row">
                                                     <?php foreach ($item_values as $item_value) : ?>
-                                                        <td><input type="<?php echo $item_value['type'] ?>" name="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" value="<?php echo $item_value['value'] ?>" <?php if (isset($item_value['accept'])) : echo 'accept="' . $item_value['accept'] . '"';
-                                                                                                                                                                                                                                                                                                                                                        endif; ?>></td>
+                                                        <td><input type="<?= $item_value['type'] ?>" name="<?= $field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" id="<?= $field['id'] . '[' . $item_key . ']' . '[' . $item_value['id'] . ']'; ?>" value="<?= $item_value['value'] ?>"></td>
                                                     <?php endforeach; // Endforeach item_value 
                                                     ?>
-                                                    <td><button class="remove-item button" type="button">Supprimer</button></td>
+                                                    <td><button class="remove-item button" type="button">Supprimer</button></td> <!-- Used in /assets/js/metaboxes.js to remove the sub-row -->
                                                 </tr>
                                             <?php endforeach; // Endforeach item_values
                                             ?>
                                         <?php else : ?>
                                             <tr class="sub-row">
-                                                <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
-                                                    <td><input type="<?php echo $repeatable_field['type'] ?>" name="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" id="<?php echo $group_field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" <?php if (isset($repeatable_field['accept'])) : echo 'accept="' . $repeatable_field['accept'] . '"';
-                                                                                                                                                                                                                                                                                            endif; ?>></td>
+                                                <?php foreach ($field['repeatable-fields'] as $repeatable_field) : ?>
+                                                    <td><input type="<?= $repeatable_field['type'] ?>" name="<?= $field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>" id="<?= $field['id'] . '[0]' . '[' . $repeatable_field['id'] . ']'; ?>"></td>
                                                 <?php endforeach; // Endforeach repeatable_field 
                                                 ?>
-                                                <td><button class="remove-item button" type="button">Supprimer</button></td>
+                                                <td><button class="remove-item button" type="button">Supprimer</button></td> <!-- Used in /assets/js/metaboxes.js to remove the sub-row -->
                                             </tr>
                                         <?php endif; // Endif meta_value
                                         ?>
-                                        <tr class="hide-tr">
-                                            <?php foreach ($group_field['repeatable-fields'] as $repeatable_field) : ?>
-                                                <td><input type="<?php echo $repeatable_field['type'] ?>" name="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" id="hide_<?php echo $group_field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" <?php if (isset($repeatable_field['accept'])) : echo 'accept="' . $repeatable_field['accept'] . '"';
-                                                                                                                                                                                                                                                                                                            endif; ?>></td>
+                                        <tr class="hide-tr"> <!-- Used in /assets/js/metaboxes.js to append a new sub-row -->
+                                            <?php foreach ($field['repeatable-fields'] as $repeatable_field) : ?>
+                                                <td><input type="<?= $repeatable_field['type'] ?>" name="hide_<?= $field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>" id="hide_<?= $field['id'] . '[rand_no]' . '[' . $repeatable_field['id'] . ']' ?>"></td>
                                             <?php endforeach; // Endforeach repeatable_field 
                                             ?>
                                             <td><button class="remove-item button" type="button">Supprimer</button></td>
@@ -160,35 +190,30 @@ class MetaboxGenerator
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><button class="add-item button button-secondary" type="button">Ajouter</button></td>
+                                            <td><button class="add-item button button-secondary" type="button">Ajouter</button></td> <!-- Used in /assets/js/metaboxes.js to append a new sub-row -->
                                         </tr>
                                     </tfoot>
                                 </table>
                                 <!-- Endif Repeatable Fields
                                 
-                            Textarea -->
-                            <?php elseif ($group_field['type'] === "textarea") : ?>
-                                <textarea id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;"><?php echo $meta_value ?></textarea>
-                                <!-- Endif Textarea
-                                
                                 Select -->
-                                <?php elseif ($group_field['type'] === "select") :
+                                <?php elseif ($field['type'] === "select") :
                                 if ($meta_value) :
                                     $selected  = isset($meta_value) ? $meta_value : '';
-                                    $selected_key = array_search($selected, array_column($group_field['options'], 'id')); ?>
-                                    <select id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
-                                        <option value="<?php echo $selected ?>"><?php echo $group_field['options'][$selected_key]['title']; ?></option>
-                                        <?php unset($group_field['options'][$selected_key]);
-                                        foreach ($group_field['options'] as $option) : ?>
-                                            <option value="<?php echo $option['id'] ?>"><?php echo $option['title'] ?></option>
-                                        <?php endforeach; // Enforeach option 
+                                    $selected_key = array_search($selected, array_column($field['options'], 'id')); ?>
+                                    <select id="<?= $field['id'] ?>" name="<?= $field['id'] ?>" style="width: 100%;">
+                                        <option value="<?= $selected ?>"><?= $field['options'][$selected_key]['title']; ?></option>
+                                        <?php unset($field['options'][$selected_key]);
+                                        foreach ($field['options'] as $option) : ?>
+                                            <option value="<?= $option['id'] ?>"><?= $option['title'] ?></option>
+                                        <?php endforeach; // Endforeach option 
                                         ?>
                                         <option value=""></option>
                                     <?php else : ?>
-                                        <select id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" style="width: 100%;">
+                                        <select id="<?= $field['id'] ?>" name="<?= $field['id'] ?>" style="width: 100%;">
                                             <option value=""></option>
-                                            <?php foreach ($group_field['options'] as $option) : ?>
-                                                <option value="<?php echo $option['id'] ?>"><?php echo $option['title'] ?></option>
+                                            <?php foreach ($field['options'] as $option) : ?>
+                                                <option value="<?= $option['id'] ?>"><?= $option['title'] ?></option>
                                         <?php endforeach; // Endforeach option
                                         endif; // Endif meta_value 
                                         ?>
@@ -196,9 +221,9 @@ class MetaboxGenerator
                                         <!-- Endif Select
 
                                     WYSIWYG -->
-                                    <?php elseif ($group_field['type'] === "WYSIWYG") :
+                                    <?php elseif ($field['type'] === "WYSIWYG") :
                                     ob_start();
-                                    wp_editor($meta_value, $group_field['id']);
+                                    wp_editor($meta_value, $field['id']);
                                     $input = ob_get_contents();
                                     ob_end_clean();
                                     echo $input; ?>
@@ -206,7 +231,7 @@ class MetaboxGenerator
 
                                     Inputs -->
                                     <?php else : ?>
-                                        <input id="<?php echo $group_field['id'] ?>" name="<?php echo $group_field['id'] ?>" type="<?php echo $group_field['type'] ?>" value="<?php echo $meta_value ?>" style="width: 100%;">
+                                        <input id="<?= $field['id'] ?>" name="<?= $field['id'] ?>" type="<?= $field['type'] ?>" value="<?= $meta_value ?>" style="width: 100%;">
 
                                     <?php endif; // Endif type of fields 
                                     ?>
@@ -225,33 +250,35 @@ class MetaboxGenerator
 
     } // End of field_generator
 
+    /* Save fields */
+
     public function save_fields($post_id)
     {
         if (!isset($_POST['MetaboxGenerator_nonce'])) :
             return $post_id;
-        endif;
+        endif; // !isset metaboxgenerator_nonce
 
         $nonce = $_POST['MetaboxGenerator_nonce'];
         if (!wp_verify_nonce($nonce, 'MetaboxGenerator_data')) :
             return $post_id;
-        endif;
+        endif; // Endif nonce
 
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) :
             return $post_id;
-        endif;
+        endif; // Endif defined DOING_AUTOSAVE
 
-        foreach ($this->fields as $fields_group) :
+        foreach ($this->fields as $group_of_fields) :
 
-            array_shift($fields_group);
-            foreach ($fields_group as $group_field) :
+            array_shift($group_of_fields);
+            foreach ($group_of_fields as $field) :
 
-                if (isset($_POST[$group_field['id']])) :
-                    update_post_meta($post_id, $group_field['id'], $_POST[$group_field['id']]);
-                endif;
+                if (isset($_POST[$field['id']])) :
+                    update_post_meta($post_id, $field['id'], $_POST[$field['id']]);
+                endif; // Endif isset field id
 
-            endforeach;
+            endforeach; // Endforeach field
 
-        endforeach;
+        endforeach; // Endforeach group_of_fields
     } // End of save_fields
 
 } // End of MetaboxGenerator
