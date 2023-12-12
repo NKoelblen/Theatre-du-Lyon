@@ -2,8 +2,6 @@
 
 jQuery(document).ready(function($) {
 
-    console.log('summary');
-
     let elements = [];
 
     /* Get elements with id and append links to those elements in the summary */
