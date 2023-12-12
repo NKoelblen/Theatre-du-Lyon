@@ -67,7 +67,9 @@ function dossiers_pro_shortcode(): string|bool
                         <?php $spectacle_posts->the_post();
                         $spectacle_id = get_the_id(); ?>
 
-                        <img class="astc_each-post-thumbnail" src="<?= get_the_post_thumbnail_url(); ?>" srcset="<?= get_the_post_thumbnail_url($spectacle_id, 'medium_large'); ?> 768w, <?= get_the_post_thumbnail_url($spectacle_id, 'medium'); ?> 300w, <?= get_the_post_thumbnail_url($spectacle_id, 'thumbnail'); ?> 150w" sizes=" (max-width: 182px) 150px, (max-width: 332px) 300px, 768px">
+                        <a href="<?= get_the_permalink(); ?>">
+                            <img class="astc_each-post-thumbnail" src="<?= get_the_post_thumbnail_url(); ?>" srcset="<?= get_the_post_thumbnail_url($spectacle_id, 'medium_large'); ?> 768w, <?= get_the_post_thumbnail_url($spectacle_id, 'medium'); ?> 300w, <?= get_the_post_thumbnail_url($spectacle_id, 'thumbnail'); ?> 150w" sizes=" (max-width: 182px) 150px, (max-width: 332px) 300px, 768px">
+                        </a>
 
                         <h3>
                             <a href="<?= get_the_permalink(); ?>">
@@ -92,15 +94,15 @@ function dossiers_pro_shortcode(): string|bool
                         <?php endforeach; // Endforeach spectacle_attachment 
                         ?>
 
-                    </article> <!-- End of unique spectacle
+                    </article> <!-- End of unique spectacle -->
 
                 <?php endwhile; // Endwhile spectacle_posts 
                 ?>
 
             </div> <!-- End of list of spectacles -->
 
-                <?php endif; // Endif spectacle_posts
-            wp_reset_postdata(); ?>
+        <?php endif; // Endif spectacle_posts
+        wp_reset_postdata(); ?>
 
     </section> <!-- End of spectacles -->
 
