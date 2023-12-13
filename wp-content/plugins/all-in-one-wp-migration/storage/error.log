@@ -1,6 +1,0 @@
-Dec 10 2023 17:21:45
-{"Number":2,"Message":"rmdir(C:\\MAMP\\htdocs\\theatredulyon\\wp-content\\plugins\\all-in-one-wp-migration\\storage\\5lonidqm0a1n): Directory not empty","File":"C:\\MAMP\\htdocs\\theatredulyon\\wp-content\\plugins\\all-in-one-wp-migration\\lib\\vendor\\servmask\\filesystem\\class-ai1wm-directory.php","Line":72}
-
-Dec 10 2023 17:21:49
-{"Number":2,"Message":"filesize(): stat failed for C:\\MAMP\\htdocs\\theatredulyon\\wp-content\\plugins\\all-in-one-wp-migration\\storage\\5lonidqm0a1n\\localhost-theatredulyon-20231210-182106-5wfskm.wpress","File":"C:\\MAMP\\htdocs\\theatredulyon\\wp-content\\plugins\\all-in-one-wp-migration\\lib\\vendor\\servmask\\archiver\\class-ai1wm-archiver.php","Line":231}
-
