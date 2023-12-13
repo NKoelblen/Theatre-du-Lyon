@@ -77,6 +77,11 @@ FileETag None
 # Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
 # dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
 # Toute modification des directives situées entre ces marqueurs sera surchargée.
+RewriteCond %{REQUEST_FILENAME} -s
+RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
+RewriteCond %{HTTP_USER_AGENT} !Twitterbot/[0-9]
+RewriteCond %{HTTP_USER_AGENT} !Googlebot/[0-9]
+RewriteRule wp-content/uploads/wp-import-export-lite(\/[A-Za-z0-9_@.\/&+-]+)+\.([A-Za-z0-9_@.\/&+-]+)$ [L]
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -86,5 +91,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /theatredulyon/index.php [L]
 </IfModule>
+
 
 # END WordPress
