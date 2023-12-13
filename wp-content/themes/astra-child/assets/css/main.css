@@ -62,7 +62,7 @@ h6 {
 div.site-branding.ast-site-identity {
     flex-shrink: unset !important;
     flex-grow: unset !important;
-    text-wrap: nowrap;
+    white-space: nowrap;
 }
 
 /* Content */

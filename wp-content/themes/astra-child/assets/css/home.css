@@ -12,17 +12,9 @@
 }
 
 /* Logo */
-@media (min-aspect-ratio: 1/1) {
-    .home-logo img {
-        width: calc(100vh / var(--ratio)) !important;
-        height: calc(100vh / var(--ratio)) !important;
-    }
-}
-@media (max-aspect-ratio: 1/1) {
-    .home-logo img {
-        width: calc(var(--wp--custom--ast-content-width-size)) !important;
-        height: calc(var(--wp--custom--ast-content-width-size)) !important;
-    }
+.home-logo img {
+    width: calc(100vmin / var(--ratio)) !important;
+    height: calc(100vmin / var(--ratio)) !important;
 }
 @media (max-width: 360px){
     .home-logo img {
