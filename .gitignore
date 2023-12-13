@@ -3,3 +3,7 @@
 /wp-content/uploads/uag-plugin/assets/0/
 /wp-content/ai1wm-backups/
 /wp-content/updraft/
+*.wprime
+/wp-content/uploads/prime-mover-export-files/
+/wp-content/uploads/prime-mover-lock-files/
+/wp-content/uploads/prime-mover-tmp-downloads/
